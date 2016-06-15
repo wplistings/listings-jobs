@@ -2,11 +2,16 @@
 
 namespace Listings\Jobs;
 
+use Listings\Jobs\Admin\Admin;
 use Listings\Jobs\Widgets\FeaturedJobs;
 use Listings\Jobs\Widgets\RecentJobs;
 
 class Plugin {
     public function __construct() {
+        if ( is_admin() ) {
+            new Admin();
+        }
+
         $this->post_types = new PostTypes();
         $this->shortcodes = new Shortcodes();
 
