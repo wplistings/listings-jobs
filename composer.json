@@ -1,0 +1,18 @@
+{
+  "name": "thelookandfeel/listings-jobs",
+  "type": "wordpress-plugin",
+  "minimum-stability": "dev",
+  "require": {},
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Coen Jacobs",
+      "email": "coen@thelookandfeel.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Listings\\Jobs\\": "src/"
+    }
+  }
+}
