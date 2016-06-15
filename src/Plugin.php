@@ -14,6 +14,8 @@ class Plugin {
 
         // Actions
         add_action( 'after_setup_theme', array( $this, 'load_plugin_textdomain' ) );
+
+        $this->shortcodes = new Shortcodes();
     }
 
     public function load_plugin_textdomain() {
