@@ -7,15 +7,25 @@ use Listings\Jobs\Widgets\RecentJobs;
 
 class Plugin {
     public function __construct() {
+        $this->post_types = new PostTypes();
+        $this->shortcodes = new Shortcodes();
+
+        // Activation - works with symlinks
+        register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $this, 'activate' ) );
+
         // Switch theme
         add_action( 'after_switch_theme', 'flush_rewrite_rules', 15 );
+        add_action( 'after_switch_theme', array( $this->post_types, 'register_post_types' ), 11 );
 
         add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 
         // Actions
         add_action( 'after_setup_theme', array( $this, 'load_plugin_textdomain' ) );
+    }
 
-        $this->shortcodes = new Shortcodes();
+    public function activate() {
+        $this->post_types->register_post_types();
+        flush_rewrite_rules();
     }
 
     public function load_plugin_textdomain() {
