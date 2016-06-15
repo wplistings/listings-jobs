@@ -12,5 +12,7 @@ define( 'LISTINGS_JOBS_VERSION', '1.25.0' );
 define( 'LISTINGS_JOBS_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'LISTINGS_JOBS_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
-include('vendor/autoload.php');
-$GLOBALS['listings_jobs'] = new \Listings\Jobs\Plugin();
+add_action('plugins_loaded', function() {
+    include('vendor/autoload.php');
+    $GLOBALS['listings_jobs'] = new \Listings\Jobs\Plugin();
+}, 20, 0 );
