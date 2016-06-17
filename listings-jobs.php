@@ -8,9 +8,28 @@
  */
 
 // Define constants
-define( 'LISTINGS_JOBS_VERSION', '1.25.0' );
+define( 'LISTINGS_JOBS_VERSION', '1.0.0' );
 define( 'LISTINGS_JOBS_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'LISTINGS_JOBS_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
-include('vendor/autoload.php');
-$GLOBALS['listings_jobs'] = new \Listings\Jobs\Plugin();
+/**
+ * @return \Listings\Jobs\Plugin
+ */
+function listings_jobs() {
+    static $instance;
+    if ( is_null( $instance ) ) {
+        $instance = new \Listings\Jobs\Plugin();
+        $instance->hooks();
+    }
+    return $instance;
+}
+
+function __load_listings_jobs() {
+    $GLOBALS['listings_jobs'] = listings_jobs();
+}
+
+// autoloader
+require 'vendor/autoload.php';
+
+// create plugin object
+add_action( 'listings_init', '__load_listings_jobs', 10 );
