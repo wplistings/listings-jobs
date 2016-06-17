@@ -82,7 +82,7 @@ class RecentJobs extends Widget {
 
                 <?php while ( $jobs->have_posts() ) : $jobs->the_post(); ?>
 
-                    <?php get_job_manager_template_part( 'content-widget', 'job_listing' ); ?>
+                    <?php listings_get_template_part( 'content-widget', 'job_listing' ); ?>
 
                 <?php endwhile; ?>
 
@@ -92,7 +92,7 @@ class RecentJobs extends Widget {
 
         <?php else : ?>
 
-            <?php get_job_manager_template_part( 'content-widget', 'no-jobs-found' ); ?>
+            <?php listings_get_template_part( 'content-widget', 'no-jobs-found' ); ?>
 
         <?php endif;
 

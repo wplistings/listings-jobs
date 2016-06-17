@@ -79,7 +79,7 @@ class EditJob extends Form {
 
 		wp_enqueue_script( 'wp-job-manager-job-submission' );
 
-		get_job_manager_template( 'job-submit.php', array(
+		listings_get_template( 'job-submit.php', array(
 			'form'               => $this->form_name,
 			'job_id'             => $this->get_job_id(),
 			'action'             => $this->get_action(),

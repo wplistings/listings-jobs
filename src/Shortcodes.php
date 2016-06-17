@@ -139,7 +139,7 @@ class Shortcodes {
 	public function job_dashboard( $atts ) {
 		if ( ! is_user_logged_in() ) {
 			ob_start();
-			get_job_manager_template( 'job-dashboard-login.php' );
+			listings_get_template( 'job-dashboard-login.php' );
 			return ob_get_clean();
 		}
 
@@ -186,7 +186,7 @@ class Shortcodes {
 			'expires'   => __( 'Listing Expires', 'wp-job-manager' )
 		) );
 
-		get_job_manager_template( 'job-dashboard.php', array( 'jobs' => $jobs->query( $args ), 'max_num_pages' => $jobs->max_num_pages, 'job_dashboard_columns' => $job_dashboard_columns ) );
+		listings_get_template( 'job-dashboard.php', array( 'jobs' => $jobs->query( $args ), 'max_num_pages' => $jobs->max_num_pages, 'job_dashboard_columns' => $job_dashboard_columns ) );
 
 		return ob_get_clean();
 	}
@@ -274,10 +274,10 @@ class Shortcodes {
 
 		if ( $show_filters ) {
 
-			get_job_manager_template( 'job-filters.php', array( 'per_page' => $per_page, 'orderby' => $orderby, 'order' => $order, 'show_categories' => $show_categories, 'categories' => $categories, 'selected_category' => $selected_category, 'job_types' => $job_types, 'atts' => $atts, 'location' => $location, 'keywords' => $keywords, 'selected_job_types' => $selected_job_types, 'show_category_multiselect' => $show_category_multiselect ) );
+			listings_get_template( 'job-filters.php', array( 'per_page' => $per_page, 'orderby' => $orderby, 'order' => $order, 'show_categories' => $show_categories, 'categories' => $categories, 'selected_category' => $selected_category, 'job_types' => $job_types, 'atts' => $atts, 'location' => $location, 'keywords' => $keywords, 'selected_job_types' => $selected_job_types, 'show_category_multiselect' => $show_category_multiselect ) );
 
-			get_job_manager_template( 'job-listings-start.php' );
-			get_job_manager_template( 'job-listings-end.php' );
+			listings_get_template( 'job-listings-start.php' );
+			listings_get_template( 'job-listings-end.php' );
 
 			if ( ! $show_pagination && $show_more ) {
 				echo '<a class="load_more_jobs" href="#" style="display:none;"><strong>' . __( 'Load more listings', 'wp-job-manager' ) . '</strong></a>';
@@ -299,13 +299,13 @@ class Shortcodes {
 
 			if ( $jobs->have_posts() ) : ?>
 
-				<?php get_job_manager_template( 'job-listings-start.php' ); ?>
+				<?php listings_get_template( 'job-listings-start.php' ); ?>
 
 				<?php while ( $jobs->have_posts() ) : $jobs->the_post(); ?>
-					<?php get_job_manager_template_part( 'content', 'job_listing' ); ?>
+					<?php listings_get_template_part( 'content', 'job_listing' ); ?>
 				<?php endwhile; ?>
 
-				<?php get_job_manager_template( 'job-listings-end.php' ); ?>
+				<?php listings_get_template( 'job-listings-end.php' ); ?>
 
 				<?php if ( $jobs->found_posts > $per_page && $show_more ) : ?>
 
@@ -356,7 +356,7 @@ class Shortcodes {
 	 * Output some content when no results were found
 	 */
 	public function output_no_results() {
-		get_job_manager_template( 'content-no-jobs-found.php' );
+		listings_get_template( 'content-no-jobs-found.php' );
 	}
 
 	/**
@@ -378,7 +378,7 @@ class Shortcodes {
 		$job_types          = array_filter( array_map( 'trim', explode( ',', $job_types ) ) );
 		$selected_job_types = array_filter( array_map( 'trim', explode( ',', $selected_job_types ) ) );
 
-		get_job_manager_template( 'job-filter-job-types.php', array( 'job_types' => $job_types, 'atts' => $atts, 'selected_job_types' => $selected_job_types ) );
+		listings_get_template( 'job-filter-job-types.php', array( 'job_types' => $job_types, 'atts' => $atts, 'selected_job_types' => $selected_job_types ) );
 	}
 
 	/**
@@ -419,7 +419,7 @@ class Shortcodes {
 
 				<h1><?php the_title(); ?></h1>
 
-				<?php get_job_manager_template_part( 'content-single', 'job_listing' ); ?>
+				<?php listings_get_template_part( 'content-single', 'job_listing' ); ?>
 
 			<?php endwhile; ?>
 
@@ -475,7 +475,7 @@ class Shortcodes {
 
 				<div class="job_summary_shortcode align<?php echo $align ?>" style="width: <?php echo $width ? $width : 'auto'; ?>">
 
-					<?php get_job_manager_template_part( 'content-summary', 'job_listing' ); ?>
+					<?php listings_get_template_part( 'content-summary', 'job_listing' ); ?>
 
 				</div>
 

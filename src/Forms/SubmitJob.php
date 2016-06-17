@@ -373,7 +373,7 @@ class SubmitJob extends Form {
 
 		wp_enqueue_script( 'wp-job-manager-job-submission' );
 
-		get_job_manager_template( 'job-submit.php', array(
+		listings_get_template( 'job-submit.php', array(
 			'form'               => $this->form_name,
 			'job_id'             => $this->get_job_id(),
 			'action'             => $this->get_action(),
@@ -640,7 +640,7 @@ class SubmitJob extends Form {
 
 			setup_postdata( $post );
 
-			get_job_manager_template( 'job-preview.php', array(
+			listings_get_template( 'job-preview.php', array(
 				'form' => $this
 			) );
 
@@ -689,6 +689,6 @@ class SubmitJob extends Form {
 	 */
 	public function done() {
 		do_action( 'job_manager_job_submitted', $this->job_id );
-		get_job_manager_template( 'job-submitted.php', array( 'job' => get_post( $this->job_id ) ) );
+		listings_get_template( 'job-submitted.php', array( 'job' => get_post( $this->job_id ) ) );
 	}
 }

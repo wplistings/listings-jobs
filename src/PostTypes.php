@@ -291,7 +291,7 @@ class PostTypes {
 
 		do_action( 'job_content_start' );
 
-		get_job_manager_template_part( 'content-single', 'job_listing' );
+		listings_get_template_part( 'content-single', 'job_listing' );
 
 		do_action( 'job_content_end' );
 
@@ -503,14 +503,14 @@ class PostTypes {
 	 * The application content when the application method is an email
 	 */
 	public function application_details_email( $apply ) {
-		get_job_manager_template( 'job-application-email.php', array( 'apply' => $apply ) );
+		listings_get_template( 'job-application-email.php', array( 'apply' => $apply ) );
 	}
 
 	/**
 	 * The application content when the application method is a url
 	 */
 	public function application_details_url( $apply ) {
-		get_job_manager_template( 'job-application-url.php', array( 'apply' => $apply ) );
+		listings_get_template( 'job-application-url.php', array( 'apply' => $apply ) );
 	}
 
 	/**
