@@ -8,7 +8,7 @@
  */
 
 // Define constants
-define( 'LISTINGS_JOBS_VERSION', '1.25.0' );
+define( 'LISTINGS_JOBS_VERSION', '1.0.0' );
 define( 'LISTINGS_JOBS_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'LISTINGS_JOBS_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
