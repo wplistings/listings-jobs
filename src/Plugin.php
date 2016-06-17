@@ -14,7 +14,7 @@ class Plugin {
         }
 
         // Register template path for this plugin
-        listings()->template->register_template_path(LISTINGS_JOBS_PLUGIN_DIR . '/template');
+        listings()->template->register_template_path(LISTINGS_JOBS_PLUGIN_DIR . '/templates/');
 
         $this->post_types = new PostTypes();
         $this->shortcodes = new Shortcodes();
