@@ -196,10 +196,7 @@ class Shortcodes {
 	 */
 	public function edit_job() {
 		$form = EditJob::instance();
-		ob_start();
 		$form->output();
-		return ob_get_clean();
-
 	}
 
 	/**
