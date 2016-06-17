@@ -1,0 +1,437 @@
+.jm-icon {
+  font-family: "job-manager" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+}
+#adminmenu #menu-posts-job_listing .wp-menu-image:before {
+  content: '\e800';
+  font-family: "job-manager" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+}
+#adminmenu #menu-posts-resume .wp-menu-image:before {
+  content: '\e806';
+  font-family: "job-manager" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+}
+
+.clearfix {
+  zoom: 1;
+  /* For IE 6/7 (trigger hasLayout) */
+}
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.jm-icon {
+  font-family: "job-manager" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+}
+.widefat td.column-featured_job,
+.widefat td.column-filled,
+.widefat td.column-job_status {
+  width: 46px;
+  text-align: left;
+  padding-left: 11px;
+}
+.widefat th.column-featured_job,
+.widefat th.column-filled,
+.widefat th.column-job_status {
+  width: 1em;
+}
+.widefat th.column-featured_job span,
+.widefat th.column-filled span,
+.widefat th.column-job_status span {
+  display: block;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  padding: 1px 0 0 0;
+  overflow: hidden;
+}
+.widefat th.column-featured_job span:before,
+.widefat th.column-filled span:before,
+.widefat th.column-job_status span:before {
+  content: '\e803';
+  font-family: "job-manager" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+}
+.widefat th.column-filled span:before {
+  content: '\e807';
+}
+.widefat th.column-job_status span:before {
+  content: '\e828';
+}
+.widefat .column-job_posted strong {
+  display: block;
+  margin-bottom: .2em;
+}
+.widefat td.column-job_status span {
+  position: relative;
+  font-size: 1em;
+  line-height: 1.5em;
+  width: 1em;
+  height: 0;
+  padding: 2em 0 0 0;
+  overflow: hidden;
+  display: block;
+}
+.widefat td.column-job_status span:before {
+  font-family: "job-manager" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 1.5em;
+  vertical-align: middle;
+  color: #999;
+  content: '\e829';
+}
+.widefat td.column-job_status .status-trash:before {
+  content: '\e82b';
+  color: #a00;
+}
+.widefat td.column-job_status .status-pending:before {
+  content: '\e82c';
+  color: #ffba00;
+}
+.widefat td.column-job_status .status-publish:before {
+  content: '\e82f';
+  color: #73a724;
+}
+.widefat td.column-job_status .status-expired:before {
+  content: '\e82e';
+  color: #a00;
+}
+.widefat .column-job_listing_type {
+  text-align: left;
+  width: 6em;
+  word-wrap: normal !important;
+}
+.widefat .column-job_listing_type .job-type {
+  color: #fff;
+  padding: 4px;
+  font-size: 11px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  display: block;
+  background-color: #f08d3c;
+  text-align: center;
+}
+.widefat .column-job_listing_type .full-time {
+  background-color: #90da36;
+}
+.widefat .column-job_listing_type .part-time {
+  background-color: #f08d3c;
+}
+.widefat .column-job_listing_type .temporary {
+  background-color: #d93674;
+}
+.widefat .column-job_listing_type .freelance {
+  background-color: #3399cc;
+}
+.widefat .column-job_listing_type .internship {
+  background-color: #6033cc;
+}
+.widefat th.column-job_position {
+  width: 20%;
+}
+.widefat td.column-job_position {
+  width: 20%;
+  height: 34px;
+}
+.widefat td.column-job_position .job_position {
+  position: relative;
+  padding-right: 50px !important;
+}
+.widefat td.column-job_position a.job_title {
+  font-weight: bold;
+}
+.widefat td.column-job_position img {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 7px;
+  top: 0;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #fff;
+}
+.widefat td.column-job_position .company {
+  margin-top: .2em;
+  display: block;
+  padding-top: 2px;
+  color: #bbbbbb;
+}
+.widefat .column-job_location {
+  width: 10%;
+}
+.widefat .column-job_actions {
+  text-align: right;
+  width: 128px;
+}
+.widefat .column-job_actions strong {
+  display: block;
+  margin-bottom: .2em;
+}
+.widefat .column-job_actions .actions {
+  padding-top: 2px;
+}
+.widefat .column-job_actions a.button {
+  display: inline-block;
+  margin: 0 0 2px 4px;
+  cursor: pointer;
+  padding: 0 6px !important;
+  font-size: 1em !important;
+  line-height: 2em !important;
+  overflow: hidden;
+}
+.widefat .column-job_actions a.button-icon {
+  width: 2em !important;
+  padding: 0 !important;
+}
+.widefat .column-job_actions a.button-icon:before {
+  font-family: "job-manager" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  float: left;
+  width: 2em !important;
+  line-height: 2em;
+}
+.widefat .column-job_actions .icon-view:before {
+  content: '\e805';
+}
+.widefat .column-job_actions .icon-edit:before {
+  content: '\e804';
+}
+.widefat .column-job_actions .icon-delete:before {
+  content: '\e82b';
+}
+.widefat .column-job_actions .icon-approve:before {
+  content: '\e802';
+}
+.rtl .widefat .column-job_actions a.button-icon:before {
+  float: right;
+}
+/* Menu */
+#adminmenu #menu-posts-job_listing .wp-menu-image:before {
+  content: '\e800';
+  font-family: "job-manager" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+}
+#adminmenu #menu-posts-resume .wp-menu-image:before {
+  content: '\e806';
+  font-family: "job-manager" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+}
+
+.clearfix {
+  zoom: 1;
+  /* For IE 6/7 (trigger hasLayout) */
+}
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.jm-icon {
+  font-family: "job-manager" !important;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+}
+.wp_job_manager_meta_data {
+  padding: 12px;
+  zoom: 1;
+}
+.wp_job_manager_meta_data:before,
+.wp_job_manager_meta_data:after {
+  content: "";
+  display: table;
+}
+.wp_job_manager_meta_data:after {
+  clear: both;
+}
+.wp_job_manager_meta_data .form-field {
+  width: 50%;
+  line-height: 2em;
+  float: left;
+  box-sizing: border-box;
+  padding: 0 12px 0 0;
+  margin: 0 0 12px;
+  clear: both;
+}
+.wp_job_manager_meta_data .form-field:nth-child(even) {
+  float: right;
+  padding: 0 0 0 12px;
+  clear: right;
+}
+.wp_job_manager_meta_data .form-field:nth-last-child(-n+2) {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.wp_job_manager_meta_data .form-field label {
+  vertical-align: middle;
+  display: block;
+  font-weight: bold;
+  margin: 0;
+}
+.wp_job_manager_meta_data .form-field .tips {
+  cursor: help;
+  float: right;
+  font-weight: normal;
+  color: #999;
+}
+.wp_job_manager_meta_data .form-field input {
+  width: 100%;
+  margin: 1px 0;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  vertical-align: middle;
+}
+.wp_job_manager_meta_data .form-field input.checkbox,
+.wp_job_manager_meta_data .form-field input.radio {
+  width: auto;
+  margin: 4px 2px;
+  display: inline-block;
+}
+.wp_job_manager_meta_data .form-field .description {
+  display: block;
+  color: #999;
+}
+.wp_job_manager_meta_data .form-field.form-field-checkbox .description {
+  display: inline;
+}
+.wp_job_manager_meta_data .form-field .file_url input {
+  width: 75%;
+}
+.wp_job_manager_meta_data .form-field .button {
+  margin-left: 4px;
+}
+.rtl .wp_job_manager_meta_data p {
+  padding: 0 20% 0 0;
+}
+.rtl .wp_job_manager_meta_data label {
+  left: auto;
+  right: 0;
+}

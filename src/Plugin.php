@@ -37,6 +37,8 @@ class Plugin {
 
         // Actions
         add_action( 'after_setup_theme', array( $this, 'load_plugin_textdomain' ) );
+
+        add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
     }
 
     public function activate() {
@@ -55,5 +57,9 @@ class Plugin {
     public function widgets_init() {
         register_widget( RecentJobs::class );
         register_widget( FeaturedJobs::class );
+    }
+
+    public function enqueue_scripts() {
+        wp_enqueue_style( 'listings-jobs', LISTINGS_JOBS_PLUGIN_URL . '/assets/css/frontend.css' );
     }
 }
