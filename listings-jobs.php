@@ -12,7 +12,23 @@ define( 'LISTINGS_JOBS_VERSION', '1.25.0' );
 define( 'LISTINGS_JOBS_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'LISTINGS_JOBS_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
-add_action('plugins_loaded', function() {
-    include('vendor/autoload.php');
-    $GLOBALS['listings_jobs'] = new \Listings\Jobs\Plugin();
-}, 20, 0 );
+/**
+ * @return \Listings\Jobs\Plugin
+ */
+function listings_jobs() {
+    static $instance;
+    if ( is_null( $instance ) ) {
+        $instance = new \Listings\Jobs\Plugin();
+    }
+    return $instance;
+}
+
+function __load_listings_jobs() {
+    $GLOBALS['listings_jobs'] = listings_jobs();
+}
+
+// autoloader
+require 'vendor/autoload.php';
+
+// create plugin object
+add_action( 'listings_init', '__load_listings_jobs', 10 );
