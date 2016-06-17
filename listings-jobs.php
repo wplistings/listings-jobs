@@ -31,4 +31,4 @@ function __load_listings_jobs() {
 require 'vendor/autoload.php';
 
 // create plugin object
-add_action( 'listings_init', '__load_listings_jobs', 10 );
+add_action( 'plugins_loaded', '__load_listings_jobs', 20 );

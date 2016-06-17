@@ -12,6 +12,9 @@ class Plugin {
             new Admin();
         }
 
+        // Register template path for this plugin
+        listings()->template->register_template_path(LISTINGS_JOBS_PLUGIN_DIR.'/template');
+
         $this->post_types = new PostTypes();
         $this->shortcodes = new Shortcodes();
 
