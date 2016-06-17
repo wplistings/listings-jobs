@@ -2,9 +2,7 @@
 
 namespace Listings\Jobs\Forms;
 
-use Listings\Forms\Form;
-
-class EditJob extends Form {
+class EditJob extends SubmitJob {
 
 	public $form_name           = 'edit-job';
 
