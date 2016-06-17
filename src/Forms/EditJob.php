@@ -33,6 +33,14 @@ class EditJob extends Form {
 	}
 
 	/**
+	 * Get the submitted job ID
+	 * @return int
+	 */
+	public function get_job_id() {
+		return absint( $this->job_id );
+	}
+
+	/**
 	 * output function.
 	 */
 	public function output( $atts = array() ) {
