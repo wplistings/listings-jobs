@@ -7,17 +7,21 @@ use Listings\Jobs\Widgets\FeaturedJobs;
 use Listings\Jobs\Widgets\RecentJobs;
 
 class Plugin {
-    public function __construct() {
-        if ( is_admin() ) {
+    public function __construct()
+    {
+        if (is_admin()) {
             new Admin();
         }
 
         // Register template path for this plugin
-        listings()->template->register_template_path(LISTINGS_JOBS_PLUGIN_DIR.'/template');
+        listings()->template->register_template_path(LISTINGS_JOBS_PLUGIN_DIR . '/template');
 
         $this->post_types = new PostTypes();
         $this->shortcodes = new Shortcodes();
+    }
 
+    public function hooks()
+    {
         // Activation - works with symlinks
         register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $this, 'activate' ) );
 

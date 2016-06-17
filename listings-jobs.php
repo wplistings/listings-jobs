@@ -19,6 +19,7 @@ function listings_jobs() {
     static $instance;
     if ( is_null( $instance ) ) {
         $instance = new \Listings\Jobs\Plugin();
+        $instance->hooks();
     }
     return $instance;
 }
@@ -31,4 +32,4 @@ function __load_listings_jobs() {
 require 'vendor/autoload.php';
 
 // create plugin object
-add_action( 'plugins_loaded', '__load_listings_jobs', 20 );
+add_action( 'listings_init', '__load_listings_jobs', 10 );
