@@ -379,3 +379,23 @@ function listings_jobs_calculate_job_expiry( $job_id ) {
 
     return '';
 }
+
+if ( ! function_exists( 'listings_jobs_get_listing_categories' ) ) :
+    /**
+     * Get job categories
+     *
+     * @access public
+     * @return array
+     */
+    function listings_jobs_get_listing_categories() {
+        if ( ! get_option( 'job_manager_enable_categories' ) ) {
+            return array();
+        }
+
+        return get_terms( "job_listing_category", array(
+            'orderby'       => 'name',
+            'order'         => 'ASC',
+            'hide_empty'    => false,
+        ) );
+    }
+endif;
