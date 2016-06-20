@@ -25,7 +25,7 @@ class EditJob extends SubmitJob {
 	public function __construct() {
 		$this->job_id = ! empty( $_REQUEST['job_id'] ) ? absint( $_REQUEST[ 'job_id' ] ) : 0;
 
-		if  ( ! job_manager_user_can_edit_job( $this->job_id ) ) {
+		if  ( ! listings_user_can_edit_listing( $this->job_id ) ) {
 			$this->job_id = 0;
 		}
 	}

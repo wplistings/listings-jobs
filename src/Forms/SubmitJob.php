@@ -74,7 +74,7 @@ class SubmitJob extends Form {
 		if ( $this->job_id ) {
 			$job_status = get_post_status( $this->job_id );
 			if ( 'expired' === $job_status ) {
-				if ( ! job_manager_user_can_edit_job( $this->job_id ) ) {
+				if ( ! listings_user_can_edit_listing( $this->job_id ) ) {
 					$this->job_id = 0;
 					$this->step   = 0;
 				}
