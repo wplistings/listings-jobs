@@ -276,3 +276,22 @@ function listings_jobs_get_job_status( $post = null ) {
 
     return apply_filters( 'listings_jobs_job_status', $status, $post );
 }
+
+if ( ! function_exists( 'listings_jobs_get_featured_job_ids' ) ) :
+    /**
+     * Gets the ids of featured jobs.
+     *
+     * @access public
+     * @return array
+     */
+    function listings_jobs_get_featured_job_ids() {
+        return get_posts( array(
+            'posts_per_page' => -1,
+            'post_type'      => 'job_listing',
+            'post_status'    => 'publish',
+            'meta_key'       => '_featured',
+            'meta_value'     => '1',
+            'fields'         => 'ids'
+        ) );
+    }
+endif;
