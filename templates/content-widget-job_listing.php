@@ -1,5 +1,5 @@
 <li <?php job_listing_class(); ?>>
-	<a href="<?php the_job_permalink(); ?>">
+	<a href="<?php listings_jobs_the_job_permalink(); ?>">
 		<div class="position">
 			<h3><?php the_title(); ?></h3>
 		</div>

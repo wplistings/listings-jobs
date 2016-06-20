@@ -308,10 +308,10 @@ class Cpt {
 				if ( ! $terms = get_the_term_list( $post->ID, $column, '', ', ', '' ) ) echo '<span class="na">&ndash;</span>'; else echo $terms;
 			break;
 			case "filled" :
-				if ( is_position_filled( $post ) ) echo '&#10004;'; else echo '&ndash;';
+				if ( listings_jobs_is_position_filled( $post ) ) echo '&#10004;'; else echo '&ndash;';
 			break;
 			case "featured_job" :
-				if ( is_position_featured( $post ) ) echo '&#10004;'; else echo '&ndash;';
+				if ( listings_jobs_is_position_featured( $post ) ) echo '&#10004;'; else echo '&ndash;';
 			break;
 			case "job_posted" :
 				echo '<strong>' . date_i18n( __( 'M j, Y', 'wp-job-manager' ), strtotime( $post->post_date ) ) . '</strong><span>';

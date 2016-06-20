@@ -19,9 +19,9 @@ do_action( 'single_job_listing_meta_before' ); ?>
 
 	<li class="date-posted" itemprop="datePosted"><date><?php printf( __( 'Posted %s ago', 'wp-job-manager' ), human_time_diff( get_post_time( 'U' ), current_time( 'timestamp' ) ) ); ?></date></li>
 
-	<?php if ( is_position_filled() ) : ?>
+	<?php if ( listings_jobs_is_position_filled() ) : ?>
 		<li class="position-filled"><?php _e( 'This position has been filled', 'wp-job-manager' ); ?></li>
-	<?php elseif ( ! candidates_can_apply() && 'preview' !== $post->post_status ) : ?>
+	<?php elseif ( ! listings_jobs_candidates_can_apply() && 'preview' !== $post->post_status ) : ?>
 		<li class="listing-expired"><?php _e( 'Applications have closed', 'wp-job-manager' ); ?></li>
 	<?php endif; ?>
 

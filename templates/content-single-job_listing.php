@@ -19,7 +19,7 @@
 			<?php echo apply_filters( 'the_job_description', get_the_content() ); ?>
 		</div>
 
-		<?php if ( candidates_can_apply() ) : ?>
+		<?php if ( listings_jobs_candidates_can_apply() ) : ?>
 			<?php listings_get_template( 'job-application.php' ); ?>
 		<?php endif; ?>
 
