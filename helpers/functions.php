@@ -8,7 +8,7 @@ if ( ! function_exists( 'listings_jobs_get_listings' ) ) :
      * @return void
      */
     function listings_jobs_get_listings( $args = array() ) {
-        global $wpdb, $job_manager_keyword;
+        global $wpdb, $listings_keyword;
 
         $args = wp_parse_args( $args, array(
             'search_location'   => '',
@@ -105,11 +105,11 @@ if ( ! function_exists( 'listings_jobs_get_listings' ) ) :
             );
         }
 
-        $job_manager_keyword = sanitize_text_field( $args['search_keywords'] );
+        $listings_keyword = sanitize_text_field( $args['search_keywords'] );
 
-        if ( ! empty( $job_manager_keyword ) && strlen( $job_manager_keyword ) >= apply_filters( 'job_manager_get_listings_keyword_length_threshold', 2 ) ) {
-            $query_args['_keyword'] = $job_manager_keyword; // Does nothing but needed for unique hash
-            add_filter( 'posts_clauses', 'get_job_listings_keyword_search' );
+        if ( ! empty( $listings_keyword ) && strlen( $listings_keyword ) >= apply_filters( 'job_manager_get_listings_keyword_length_threshold', 2 ) ) {
+            $query_args['_keyword'] = $listings_keyword; // Does nothing but needed for unique hash
+            add_filter( 'posts_clauses', 'listings_get_keyword_search' );
         }
 
         $query_args = apply_filters( 'job_manager_get_listings', $query_args, $args );
@@ -143,7 +143,7 @@ if ( ! function_exists( 'listings_jobs_get_listings' ) ) :
 
         do_action( 'after_get_job_listings', $query_args, $args );
 
-        remove_filter( 'posts_clauses', 'get_job_listings_keyword_search' );
+        remove_filter( 'posts_clauses', 'listings_get_keyword_search' );
 
         return $result;
     }
