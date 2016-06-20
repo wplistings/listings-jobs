@@ -489,7 +489,7 @@ class PostTypes {
 
 		// No manual setting? Lets generate a date
 		} else {
-			$expires = calculate_job_expiry( $post->ID );
+			$expires = listings_jobs_calculate_job_expiry( $post->ID );
 			update_post_meta( $post->ID, '_job_expires', $expires );
 
 			// In case we are saving a post, ensure post data is updated so the field is not overridden

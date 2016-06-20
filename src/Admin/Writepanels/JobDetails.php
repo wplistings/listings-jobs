@@ -89,7 +89,7 @@ class JobDetails extends Writepanel
 				'priority'    => 11,
 				'classes'     => array( 'job-manager-datepicker' ),
 				'placeholder' => _x( 'yyyy-mm-dd', 'Date format placeholder', 'wp-job-manager' ),
-				'value'       => metadata_exists( 'post', $post->ID, '_job_expires' ) ? get_post_meta( $post->ID, '_job_expires', true ) : calculate_job_expiry( $post->ID ),
+				'value'       => metadata_exists( 'post', $post->ID, '_job_expires' ) ? get_post_meta( $post->ID, '_job_expires', true ) : listings_jobs_calculate_job_expiry( $post->ID ),
 			);
 		}
 		if ( $current_user->has_cap( 'edit_others_job_listings' ) ) {
