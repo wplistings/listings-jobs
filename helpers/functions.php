@@ -229,3 +229,50 @@ if ( ! function_exists( 'listings_jobs_get_rss_link' ) ) :
         return $rss_link;
     }
 endif;
+
+if ( ! function_exists( 'listings_jobs_get_listing_post_statuses' ) ) :
+    /**
+     * Get post statuses used for jobs
+     *
+     * @access public
+     * @return array
+     */
+    function listings_jobs_get_listing_post_statuses() {
+        return apply_filters( 'job_listing_post_statuses', array(
+            'draft'           => _x( 'Draft', 'post status', 'wp-job-manager' ),
+            'expired'         => _x( 'Expired', 'post status', 'wp-job-manager' ),
+            'preview'         => _x( 'Preview', 'post status', 'wp-job-manager' ),
+            'pending'         => _x( 'Pending approval', 'post status', 'wp-job-manager' ),
+            'pending_payment' => _x( 'Pending payment', 'post status', 'wp-job-manager' ),
+            'publish'         => _x( 'Active', 'post status', 'wp-job-manager' ),
+        ) );
+    }
+endif;
+
+/**
+ * Outputs the jobs status
+ *
+ * @return void
+ */
+function listings_jobs_job_status( $post = null ) {
+    echo listings_jobs_get_job_status( $post );
+}
+
+/**
+ * Gets the jobs status
+ *
+ * @return string
+ */
+function listings_jobs_get_job_status( $post = null ) {
+    $post     = get_post( $post );
+    $status   = $post->post_status;
+    $statuses = listings_jobs_get_listing_post_statuses();
+
+    if ( isset( $statuses[ $status ] ) ) {
+        $status = $statuses[ $status ];
+    } else {
+        $status = __( 'Inactive', 'listings-jobs' );
+    }
+
+    return apply_filters( 'listings_jobs_job_status', $status, $post );
+}
