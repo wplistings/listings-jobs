@@ -418,7 +418,7 @@ class SubmitJob extends Form {
 						}
 					}
 					if ( ! empty( $_POST['create_account_email'] ) ) {
-						$create_account = wp_job_manager_create_account( array(
+						$create_account = listings_create_account( array(
 							'username' => empty( $_POST['create_account_username'] ) ? '' : $_POST['create_account_username'],
 							'email'    => $_POST['create_account_email'],
 							'role'     => get_option( 'job_manager_registration_role' )
