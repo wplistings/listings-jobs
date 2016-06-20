@@ -3,6 +3,7 @@
 namespace Listings\Jobs;
 
 use Listings\Jobs\Admin\Admin;
+use Listings\Jobs\Ajax\Actions\GetListings;
 use Listings\Jobs\Forms\EditJob;
 use Listings\Jobs\Forms\SubmitJob;
 use Listings\Jobs\Widgets\FeaturedJobs;
@@ -19,6 +20,9 @@ class Plugin {
         listings()->template->register_template_path(LISTINGS_JOBS_PLUGIN_DIR . '/templates/');
         listings()->forms->register_form(new EditJob());
         listings()->forms->register_form(new SubmitJob());
+
+        // Register Ajax actions
+        listings()->ajax->registerAction(new GetListings() );
 
         $this->post_types = new PostTypes();
         $this->shortcodes = new Shortcodes();
