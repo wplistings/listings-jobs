@@ -52,7 +52,7 @@ class EditJob extends SubmitJob {
 	public function submit() {
 		$job = get_post( $this->job_id );
 
-		if ( empty( $this->job_id  ) || ( $job->post_status !== 'publish' && ! job_manager_user_can_edit_pending_submissions() ) ) {
+		if ( empty( $this->job_id  ) || ( $job->post_status !== 'publish' && ! listings_user_can_edit_pending_submissions() ) ) {
 			echo wpautop( __( 'Invalid listing', 'wp-job-manager' ) );
 			return;
 		}
