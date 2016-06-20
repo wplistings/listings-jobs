@@ -22,7 +22,7 @@
 									<?php if ( $job->post_status == 'publish' ) : ?>
 										<a href="<?php echo get_permalink( $job->ID ); ?>"><?php echo $job->post_title; ?></a>
 									<?php else : ?>
-										<?php echo $job->post_title; ?> <small>(<?php the_job_status( $job ); ?>)</small>
+										<?php echo $job->post_title; ?> <small>(<?php listings_jobs_job_status( $job ); ?>)</small>
 									<?php endif; ?>
 									<ul class="job-dashboard-actions">
 										<?php
@@ -41,13 +41,13 @@
 													$actions['duplicate'] = array( 'label' => __( 'Duplicate', 'wp-job-manager' ), 'nonce' => true );
 													break;
 												case 'expired' :
-													if ( job_manager_get_permalink( 'submit_job_form' ) ) {
+													if ( listings_get_permalink( 'submit_job_form' ) ) {
 														$actions['relist'] = array( 'label' => __( 'Relist', 'wp-job-manager' ), 'nonce' => true );
 													}
 													break;
 												case 'pending_payment' :
 												case 'pending' :
-													if ( job_manager_user_can_edit_pending_submissions() ) {
+													if ( listings_user_can_edit_pending_submissions() ) {
 														$actions['edit'] = array( 'label' => __( 'Edit', 'wp-job-manager' ), 'nonce' => false );
 													}
 												break;

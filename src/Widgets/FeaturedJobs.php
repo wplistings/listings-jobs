@@ -54,7 +54,7 @@ class FeaturedJobs extends Widget {
 
         $title  = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
         $number = absint( $instance['number'] );
-        $jobs   = get_job_listings( array(
+        $jobs   = listings_jobs_get_listings( array(
             'posts_per_page' => $number,
             'orderby'        => 'date',
             'order'          => 'DESC',

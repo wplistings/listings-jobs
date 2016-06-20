@@ -16,7 +16,7 @@ global $job_manager;
 
 	<?php endif; ?>
 
-	<?php if ( job_manager_user_can_post_job() || job_manager_user_can_edit_job( $job_id ) ) : ?>
+	<?php if ( listings_user_can_post_listing() || listings_user_can_edit_listing( $job_id ) ) : ?>
 
 		<!-- Job Information Fields -->
 		<?php do_action( 'submit_job_form_job_fields_start' ); ?>

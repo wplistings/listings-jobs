@@ -324,7 +324,7 @@ class Cpt {
 					echo '&ndash;';
 			break;
 			case "job_status" :
-				echo '<span data-tip="' . esc_attr( get_the_job_status( $post ) ) . '" class="tips status-' . esc_attr( $post->post_status ) . '">' . get_the_job_status( $post ) . '</span>';
+				echo '<span data-tip="' . esc_attr( listings_jobs_get_job_status( $post ) ) . '" class="tips status-' . esc_attr( $post->post_status ) . '">' . listings_jobs_get_job_status( $post ) . '</span>';
 			break;
 			case "job_actions" :
 				echo '<div class="actions">';
@@ -485,7 +485,7 @@ class Cpt {
 
 		// Get all non-builtin post status and add them as <option>
 		$options = $display = '';
-		foreach ( get_job_listing_post_statuses() as $status => $name ) {
+		foreach ( listings_jobs_get_listing_post_statuses() as $status => $name ) {
 			$selected = selected( $post->post_status, $status, false );
 
 			// If we one of our custom post status is selected, remember it

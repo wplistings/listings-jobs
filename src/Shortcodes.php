@@ -61,7 +61,7 @@ class Shortcodes {
 				$job    = get_post( $job_id );
 
 				// Check ownership
-				if ( ! job_manager_user_can_edit_job( $job_id ) ) {
+				if ( ! listings_user_can_edit_listing( $job_id ) ) {
 					throw new \Exception( __( 'Invalid ID', 'wp-job-manager' ) );
 				}
 
@@ -98,25 +98,25 @@ class Shortcodes {
 
 						break;
 					case 'duplicate' :
-						if ( ! job_manager_get_permalink( 'submit_job_form' ) ) {
+						if ( ! listings_get_permalink( 'submit_job_form' ) ) {
 							throw new \Exception( __( 'Missing submission page.', 'wp-job-manager' ) );
 						}
 
-						$new_job_id = job_manager_duplicate_listing( $job_id );
+						$new_job_id = listings_jobs_duplicate_listing( $job_id );
 
 						if ( $new_job_id ) {
-							wp_redirect( add_query_arg( array( 'job_id' => absint( $new_job_id ) ), job_manager_get_permalink( 'submit_job_form' ) ) );
+							wp_redirect( add_query_arg( array( 'job_id' => absint( $new_job_id ) ), listings_get_permalink( 'submit_job_form' ) ) );
 							exit;
 						}
 
 						break;
 					case 'relist' :
-						if ( ! job_manager_get_permalink( 'submit_job_form' ) ) {
+						if ( ! listings_get_permalink( 'submit_job_form' ) ) {
 							throw new \Exception( __( 'Missing submission page.', 'wp-job-manager' ) );
 						}
 
 						// redirect to post page
-						wp_redirect( add_query_arg( array( 'job_id' => absint( $job_id ) ), job_manager_get_permalink( 'submit_job_form' ) ) );
+						wp_redirect( add_query_arg( array( 'job_id' => absint( $job_id ) ), listings_get_permalink( 'submit_job_form' ) ) );
 						exit;
 
 						break;
@@ -231,7 +231,7 @@ class Shortcodes {
 			'location'                  => '',
 			'keywords'                  => '',
 			'selected_category'         => '',
-			'selected_job_types'        => implode( ',', array_values( get_job_listing_types( 'id=>slug' ) ) ),
+			'selected_job_types'        => implode( ',', array_values( listings_jobs_get_types( 'id=>slug' ) ) ),
 		) ), $atts ) );
 
 		if ( ! get_option( 'job_manager_enable_categories' ) ) {
@@ -282,7 +282,7 @@ class Shortcodes {
 
 		} else {
 
-			$jobs = get_job_listings( apply_filters( 'job_manager_output_jobs_args', array(
+			$jobs = listings_jobs_get_listings( apply_filters( 'job_manager_output_jobs_args', array(
 				'search_location'   => $location,
 				'search_keywords'   => $keywords,
 				'search_categories' => $categories,
@@ -309,7 +309,7 @@ class Shortcodes {
 					<?php wp_enqueue_script( 'wp-job-manager-ajax-filters' ); ?>
 
 					<?php if ( $show_pagination ) : ?>
-						<?php echo get_job_listing_pagination( $jobs->max_num_pages ); ?>
+						<?php echo listings_get_listing_pagination( $jobs->max_num_pages ); ?>
 					<?php else : ?>
 						<a class="load_more_jobs" href="#"><strong><?php _e( 'Load more listings', 'wp-job-manager' ); ?></strong></a>
 					<?php endif; ?>

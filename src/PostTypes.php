@@ -347,8 +347,8 @@ class PostTypes {
 			);
 		}
 
-		if ( $job_manager_keyword = sanitize_text_field( $_GET['search_keywords'] ) ) {
-			$query_args['_keyword'] = $job_manager_keyword; // Does nothing but needed for unique hash
+		if ( $listings_keyword = sanitize_text_field( $_GET['search_keywords'] ) ) {
+			$query_args['_keyword'] = $listings_keyword; // Does nothing but needed for unique hash
 			add_filter( 'posts_clauses', 'get_job_listings_keyword_search' );
 		}
 
@@ -489,7 +489,7 @@ class PostTypes {
 
 		// No manual setting? Lets generate a date
 		} else {
-			$expires = calculate_job_expiry( $post->ID );
+			$expires = listings_jobs_calculate_job_expiry( $post->ID );
 			update_post_meta( $post->ID, '_job_expires', $expires );
 
 			// In case we are saving a post, ensure post data is updated so the field is not overridden

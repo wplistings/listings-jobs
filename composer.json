@@ -11,6 +11,9 @@
     }
   ],
   "autoload": {
+    "files": [
+      "helpers/functions.php"
+    ],
     "psr-4": {
       "Listings\\Jobs\\": "src/"
     }
