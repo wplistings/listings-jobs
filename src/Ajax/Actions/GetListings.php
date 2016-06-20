@@ -52,7 +52,7 @@ class GetListings extends Action
 
         ob_start();
 
-        $jobs = get_job_listings( apply_filters( 'job_manager_get_listings_args', $args ) );
+        $jobs = listings_jobs_get_listings( apply_filters( 'listings_jobs_get_listings_args', $args ) );
 
         $result['found_jobs'] = false;
 
@@ -113,14 +113,14 @@ class GetListings extends Action
         $result['showing'][] = $post_type_label;
 
         if ( $search_location ) {
-            $result['showing'][] = sprintf( __( 'located in &ldquo;%s&rdquo;', 'wp-job-manager' ), $search_location );
+            $result['showing'][] = sprintf( __( 'located in &ldquo;%s&rdquo;', 'listings-jobs' ), $search_location );
         }
 
         if ( 1 === sizeof( $result['showing'] ) ) {
             $result['showing_all'] = true;
         }
 
-        $result['showing'] = apply_filters( 'job_manager_get_listings_custom_filter_text', sprintf( __( 'Showing all %s', 'wp-job-manager' ), implode( ' ', $result['showing'] ) ) );
+        $result['showing'] = apply_filters( 'listings_jobs_get_listings_custom_filter_text', sprintf( __( 'Showing all %s', 'listings-jobs' ), implode( ' ', $result['showing'] ) ) );
 
         // Generate RSS link
         $result['showing_links'] = listings_jobs_get_filtered_links( array(
@@ -132,11 +132,11 @@ class GetListings extends Action
 
         // Generate pagination
         if ( isset( $_REQUEST['show_pagination'] ) && $_REQUEST['show_pagination'] === 'true' ) {
-            $result['pagination'] = get_job_listing_pagination( $jobs->max_num_pages, absint( $_REQUEST['page'] ) );
+            $result['pagination'] = listings_get_listing_pagination( $jobs->max_num_pages, absint( $_REQUEST['page'] ) );
         }
 
         $result['max_num_pages'] = $jobs->max_num_pages;
 
-        wp_send_json( apply_filters( 'job_manager_get_listings_result', $result, $jobs ) );
+        wp_send_json( apply_filters( 'listings_jobs_get_listings_result', $result, $jobs ) );
     }
 }

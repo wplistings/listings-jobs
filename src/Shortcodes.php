@@ -282,7 +282,7 @@ class Shortcodes {
 
 		} else {
 
-			$jobs = get_job_listings( apply_filters( 'job_manager_output_jobs_args', array(
+			$jobs = listings_jobs_get_listings( apply_filters( 'job_manager_output_jobs_args', array(
 				'search_location'   => $location,
 				'search_keywords'   => $keywords,
 				'search_categories' => $categories,
@@ -309,7 +309,7 @@ class Shortcodes {
 					<?php wp_enqueue_script( 'wp-job-manager-ajax-filters' ); ?>
 
 					<?php if ( $show_pagination ) : ?>
-						<?php echo get_job_listing_pagination( $jobs->max_num_pages ); ?>
+						<?php echo listings_get_listing_pagination( $jobs->max_num_pages ); ?>
 					<?php else : ?>
 						<a class="load_more_jobs" href="#"><strong><?php _e( 'Load more listings', 'wp-job-manager' ); ?></strong></a>
 					<?php endif; ?>
