@@ -98,25 +98,25 @@ class Shortcodes {
 
 						break;
 					case 'duplicate' :
-						if ( ! job_manager_get_permalink( 'submit_job_form' ) ) {
+						if ( ! listings_get_permalink( 'submit_job_form' ) ) {
 							throw new \Exception( __( 'Missing submission page.', 'wp-job-manager' ) );
 						}
 
 						$new_job_id = listings_jobs_duplicate_listing( $job_id );
 
 						if ( $new_job_id ) {
-							wp_redirect( add_query_arg( array( 'job_id' => absint( $new_job_id ) ), job_manager_get_permalink( 'submit_job_form' ) ) );
+							wp_redirect( add_query_arg( array( 'job_id' => absint( $new_job_id ) ), listings_get_permalink( 'submit_job_form' ) ) );
 							exit;
 						}
 
 						break;
 					case 'relist' :
-						if ( ! job_manager_get_permalink( 'submit_job_form' ) ) {
+						if ( ! listings_get_permalink( 'submit_job_form' ) ) {
 							throw new \Exception( __( 'Missing submission page.', 'wp-job-manager' ) );
 						}
 
 						// redirect to post page
-						wp_redirect( add_query_arg( array( 'job_id' => absint( $job_id ) ), job_manager_get_permalink( 'submit_job_form' ) ) );
+						wp_redirect( add_query_arg( array( 'job_id' => absint( $job_id ) ), listings_get_permalink( 'submit_job_form' ) ) );
 						exit;
 
 						break;

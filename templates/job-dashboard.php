@@ -41,7 +41,7 @@
 													$actions['duplicate'] = array( 'label' => __( 'Duplicate', 'wp-job-manager' ), 'nonce' => true );
 													break;
 												case 'expired' :
-													if ( job_manager_get_permalink( 'submit_job_form' ) ) {
+													if ( listings_get_permalink( 'submit_job_form' ) ) {
 														$actions['relist'] = array( 'label' => __( 'Relist', 'wp-job-manager' ), 'nonce' => true );
 													}
 													break;
