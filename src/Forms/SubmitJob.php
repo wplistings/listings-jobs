@@ -311,7 +311,7 @@ class SubmitJob extends Form {
 	 */
 	private function job_types() {
 		$options = array();
-		$terms   = get_job_listing_types();
+		$terms   = listings_jobs_get_types();
 		foreach ( $terms as $term ) {
 			$options[ $term->slug ] = $term->name;
 		}

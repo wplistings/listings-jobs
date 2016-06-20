@@ -20,7 +20,7 @@ class GetListings extends Action
         $search_keywords   = sanitize_text_field( stripslashes( $_REQUEST['search_keywords'] ) );
         $search_categories = isset( $_REQUEST['search_categories'] ) ? $_REQUEST['search_categories'] : '';
         $filter_job_types  = isset( $_REQUEST['filter_job_type'] ) ? array_filter( array_map( 'sanitize_title', (array) $_REQUEST['filter_job_type'] ) ) : null;
-        $types             = get_job_listing_types();
+        $types             = listings_jobs_get_types();
         $post_type_label   = $wp_post_types['job_listing']->labels->name;
         $orderby           = sanitize_text_field( $_REQUEST['orderby'] );
 
@@ -123,7 +123,7 @@ class GetListings extends Action
         $result['showing'] = apply_filters( 'job_manager_get_listings_custom_filter_text', sprintf( __( 'Showing all %s', 'wp-job-manager' ), implode( ' ', $result['showing'] ) ) );
 
         // Generate RSS link
-        $result['showing_links'] = job_manager_get_filtered_links( array(
+        $result['showing_links'] = listings_jobs_get_filtered_links( array(
             'filter_job_types'  => $filter_job_types,
             'search_location'   => $search_location,
             'search_categories' => $search_categories,

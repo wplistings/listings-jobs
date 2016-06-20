@@ -231,7 +231,7 @@ class Shortcodes {
 			'location'                  => '',
 			'keywords'                  => '',
 			'selected_category'         => '',
-			'selected_job_types'        => implode( ',', array_values( get_job_listing_types( 'id=>slug' ) ) ),
+			'selected_job_types'        => implode( ',', array_values( listings_jobs_get_types( 'id=>slug' ) ) ),
 		) ), $atts ) );
 
 		if ( ! get_option( 'job_manager_enable_categories' ) ) {
