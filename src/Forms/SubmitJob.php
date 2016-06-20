@@ -408,9 +408,9 @@ class SubmitJob extends Form {
 			if ( ! is_user_logged_in() ) {
 				$create_account = false;
 
-				if ( job_manager_enable_registration() ) {
-					if ( job_manager_user_requires_account() ) {
-						if ( ! job_manager_generate_username_from_email() && empty( $_POST['create_account_username'] ) ) {
+				if ( listings_enable_registration() ) {
+					if ( listings_user_requires_account() ) {
+						if ( ! listings_generate_username_from_email() && empty( $_POST['create_account_username'] ) ) {
 							throw new \Exception( __( 'Please enter a username.', 'wp-job-manager' ) );
 						}
 						if ( empty( $_POST['create_account_email'] ) ) {
@@ -431,7 +431,7 @@ class SubmitJob extends Form {
 				}
 			}
 
-			if ( job_manager_user_requires_account() && ! is_user_logged_in() ) {
+			if ( listings_user_requires_account() && ! is_user_logged_in() ) {
 				throw new \Exception( __( 'You must be signed in to post a new listing.' ) );
 			}
 
