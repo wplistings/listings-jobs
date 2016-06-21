@@ -436,3 +436,19 @@ function listings_jobs_get_job_listing_class( $class = '', $post_id = null ) {
 
     return get_post_class( $classes, $post->ID );
 }
+
+/**
+ * Displays job meta data on the single job page
+ */
+function listings_jobs_job_listing_meta_display() {
+    listings_get_template( 'content-single-job_listing-meta.php', array() );
+}
+add_action( 'single_job_listing_start', 'listings_jobs_job_listing_meta_display', 20 );
+
+/**
+ * Displays job company data on the single job page
+ */
+function listings_jobs_job_listing_company_display() {
+    listings_get_template( 'content-single-job_listing-company.php', array() );
+}
+add_action( 'single_job_listing_start', 'listings_jobs_job_listing_company_display', 30 );
