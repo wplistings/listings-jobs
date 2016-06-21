@@ -276,3 +276,25 @@ function listings_jobs_get_the_company_name( $post = null ) {
 
     return apply_filters( 'listings_jobs_the_company_name', $post->_company_name, $post );
 }
+
+/**
+ * listings_jobs_get_the_company_website function.
+ *
+ * @access public
+ * @param int $post (default: null)
+ * @return void
+ */
+function listings_jobs_get_the_company_website( $post = null ) {
+    $post = get_post( $post );
+
+    if ( $post->post_type !== 'job_listing' )
+        return;
+
+    $website = $post->_company_website;
+
+    if ( $website && ! strstr( $website, 'http:' ) && ! strstr( $website, 'https:' ) ) {
+        $website = 'http://' . $website;
+    }
+
+    return apply_filters( 'listings_jobs_the_company_website', $website, $post );
+}

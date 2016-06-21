@@ -290,8 +290,8 @@ class Cpt {
 
 				echo '<div class="company">';
 
-				if ( get_the_company_website() ) {
-					listings_jobs_the_company_name( '<span class="tips" data-tip="' . esc_attr( get_the_company_tagline() ) . '"><a href="' . esc_url( get_the_company_website() ) . '">', '</a></span>' );
+				if ( listings_jobs_get_the_company_website() ) {
+					listings_jobs_the_company_name( '<span class="tips" data-tip="' . esc_attr( get_the_company_tagline() ) . '"><a href="' . esc_url( listings_jobs_get_the_company_website() ) . '">', '</a></span>' );
 				} else {
 					listings_jobs_the_company_name( '<span class="tips" data-tip="' . esc_attr( get_the_company_tagline() ) . '">', '</span>' );
 				}
