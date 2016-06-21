@@ -3,7 +3,7 @@
 <a href="<?php the_permalink(); ?>">
 	<div class="job-type <?php echo listings_jobs_the_job_type() ? sanitize_title( listings_jobs_the_job_type()->slug ) : ''; ?>"><?php listings_jobs_the_job_type(); ?></div>
 
-	<?php if ( $logo = get_the_company_logo() ) : ?>
+	<?php if ( $logo = listings_jobs_get_the_company_logo() ) : ?>
 		<img src="<?php echo esc_attr( $logo ); ?>" alt="<?php the_company_name(); ?>" title="<?php the_company_name(); ?> - <?php the_company_tagline(); ?>" />
 	<?php endif; ?>
 

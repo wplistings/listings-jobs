@@ -12,7 +12,7 @@ if ( ! get_the_company_name() ) {
 }
 ?>
 <div class="company" itemscope itemtype="http://data-vocabulary.org/Organization">
-	<?php the_company_logo(); ?>
+	<?php listings_jobs_the_company_logo(); ?>
 
 	<p class="name">
 		<?php if ( $website = get_the_company_website() ) : ?>

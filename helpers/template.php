@@ -163,3 +163,41 @@ function listings_jobs_get_the_job_location( $post = null ) {
 
     return apply_filters( 'the_job_location', $post->_job_location, $post );
 }
+
+/**
+ * the_company_logo function.
+ *
+ * @access public
+ * @param string $size (default: 'full')
+ * @param mixed $default (default: null)
+ * @return void
+ */
+function listings_jobs_the_company_logo( $size = 'thumbnail', $default = null, $post = null ) {
+    $logo = listings_jobs_get_the_company_logo( $post, $size );
+
+    if ( has_post_thumbnail( $post ) ) {
+        echo '<img class="company_logo" src="' . esc_attr( $logo ) . '" alt="' . esc_attr( get_the_company_name( $post ) ) . '" />';
+    } elseif ( $default ) {
+        echo '<img class="company_logo" src="' . esc_attr( $default ) . '" alt="' . esc_attr( get_the_company_name( $post ) ) . '" />';
+    } else {
+        echo '<img class="company_logo" src="' . esc_attr( apply_filters( 'listings_jobs_default_company_logo', LISTINGS_JOBS_PLUGIN_URL . '/assets/images/company.png' ) ) . '" alt="' . esc_attr( get_the_company_name( $post ) ) . '" />';
+    }
+}
+
+/**
+ * get_the_company_logo function.
+ *
+ * @access public
+ * @param mixed $post (default: null)
+ * @return string Image SRC
+ */
+function listings_jobs_get_the_company_logo( $post = null, $size = 'thumbnail' ) {
+    $post = get_post( $post );
+
+    if ( has_post_thumbnail( $post->ID ) ) {
+        $src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $size );
+        return $src ? $src[0] : '';
+    }
+
+    return '';
+}

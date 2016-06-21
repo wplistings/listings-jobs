@@ -1,7 +1,7 @@
 <?php global $post; ?>
 <li <?php job_listing_class(); ?> data-longitude="<?php echo esc_attr( $post->geolocation_lat ); ?>" data-latitude="<?php echo esc_attr( $post->geolocation_long ); ?>">
 	<a href="<?php listings_jobs_the_job_permalink(); ?>">
-		<?php the_company_logo(); ?>
+		<?php listings_jobs_the_company_logo(); ?>
 		<div class="position">
 			<h3><?php the_title(); ?></h3>
 			<div class="company">

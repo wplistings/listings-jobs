@@ -298,7 +298,7 @@ class Cpt {
 
 				echo '</div>';
 
-				the_company_logo();
+				listings_jobs_the_company_logo();
 				echo '</div>';
 			break;
 			case "job_location" :
