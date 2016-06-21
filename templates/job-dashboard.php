@@ -32,7 +32,7 @@
 												case 'publish' :
 													$actions['edit'] = array( 'label' => __( 'Edit', 'wp-job-manager' ), 'nonce' => false );
 
-													if ( is_position_filled( $job ) ) {
+													if ( listings_jobs_is_position_filled( $job ) ) {
 														$actions['mark_not_filled'] = array( 'label' => __( 'Mark not filled', 'wp-job-manager' ), 'nonce' => true );
 													} else {
 														$actions['mark_filled'] = array( 'label' => __( 'Mark filled', 'wp-job-manager' ), 'nonce' => true );
@@ -70,7 +70,7 @@
 								<?php elseif ('expires' === $key ) : ?>
 									<?php echo $job->_job_expires ? date_i18n( get_option( 'date_format' ), strtotime( $job->_job_expires ) ) : '&ndash;'; ?>
 								<?php elseif ('filled' === $key ) : ?>
-									<?php echo is_position_filled( $job ) ? '&#10004;' : '&ndash;'; ?>
+									<?php echo listings_jobs_is_position_filled( $job ) ? '&#10004;' : '&ndash;'; ?>
 								<?php else : ?>
 									<?php do_action( 'job_manager_job_dashboard_column_' . $key, $job ); ?>
 								<?php endif; ?>

@@ -378,9 +378,9 @@ class PostTypes {
 	 */
 	public function job_feed_item() {
 		$post_id  = get_the_ID();
-		$location = get_the_job_location( $post_id );
-		$job_type = get_the_job_type( $post_id );
-		$company  = get_the_company_name( $post_id );
+		$location = listings_jobs_get_the_job_location( $post_id );
+		$job_type = listings_jobs_get_the_job_type( $post_id );
+		$company  = listings_jobs_get_the_company_name( $post_id );
 
 		if ( $location ) {
 			echo "<job_listing:location><![CDATA[" . esc_html( $location ) . "]]></job_listing:location>\n";

@@ -512,7 +512,7 @@ class Shortcodes {
 
 			<?php while ( $jobs->have_posts() ) :
 				$jobs->the_post();
-				$apply = get_the_job_application_method();
+				$apply = listings_jobs_get_application_method();
 				?>
 
 				<?php do_action( 'job_manager_before_job_apply_' . absint( $id ) ); ?>

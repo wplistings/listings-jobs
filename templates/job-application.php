@@ -1,4 +1,4 @@
-<?php if ( $apply = get_the_job_application_method() ) :
+<?php if ( $apply = listings_jobs_get_application_method() ) :
 	wp_enqueue_script( 'wp-job-manager-job-application' );
 	?>
 	<div class="job_application application">

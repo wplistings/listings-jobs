@@ -280,7 +280,7 @@ class Cpt {
 
 		switch ( $column ) {
 			case "job_listing_type" :
-				$type = get_the_job_type( $post );
+				$type = listings_jobs_get_the_job_type( $post );
 				if ( $type )
 					echo '<span class="job-type ' . $type->slug . '">' . $type->name . '</span>';
 			break;
@@ -290,28 +290,28 @@ class Cpt {
 
 				echo '<div class="company">';
 
-				if ( get_the_company_website() ) {
-					the_company_name( '<span class="tips" data-tip="' . esc_attr( get_the_company_tagline() ) . '"><a href="' . esc_url( get_the_company_website() ) . '">', '</a></span>' );
+				if ( listings_jobs_get_the_company_website() ) {
+					listings_jobs_the_company_name( '<span class="tips" data-tip="' . esc_attr( listings_jobs_get_the_company_tagline() ) . '"><a href="' . esc_url( listings_jobs_get_the_company_website() ) . '">', '</a></span>' );
 				} else {
-					the_company_name( '<span class="tips" data-tip="' . esc_attr( get_the_company_tagline() ) . '">', '</span>' );
+					listings_jobs_the_company_name( '<span class="tips" data-tip="' . esc_attr( listings_jobs_get_the_company_tagline() ) . '">', '</span>' );
 				}
 
 				echo '</div>';
 
-				the_company_logo();
+				listings_jobs_the_company_logo();
 				echo '</div>';
 			break;
 			case "job_location" :
-				the_job_location( $post );
+				listings_jobs_the_job_location( $post );
 			break;
 			case "job_listing_category" :
 				if ( ! $terms = get_the_term_list( $post->ID, $column, '', ', ', '' ) ) echo '<span class="na">&ndash;</span>'; else echo $terms;
 			break;
 			case "filled" :
-				if ( is_position_filled( $post ) ) echo '&#10004;'; else echo '&ndash;';
+				if ( listings_jobs_is_position_filled( $post ) ) echo '&#10004;'; else echo '&ndash;';
 			break;
 			case "featured_job" :
-				if ( is_position_featured( $post ) ) echo '&#10004;'; else echo '&ndash;';
+				if ( listings_jobs_is_position_featured( $post ) ) echo '&#10004;'; else echo '&ndash;';
 			break;
 			case "job_posted" :
 				echo '<strong>' . date_i18n( __( 'M j, Y', 'wp-job-manager' ), strtotime( $post->post_date ) ) . '</strong><span>';
