@@ -1,5 +1,5 @@
 <?php global $post; ?>
-<li <?php job_listing_class(); ?> data-longitude="<?php echo esc_attr( $post->geolocation_lat ); ?>" data-latitude="<?php echo esc_attr( $post->geolocation_long ); ?>">
+<li <?php listings_jobs_job_listing_class(); ?> data-longitude="<?php echo esc_attr( $post->geolocation_lat ); ?>" data-latitude="<?php echo esc_attr( $post->geolocation_long ); ?>">
 	<a href="<?php listings_jobs_the_job_permalink(); ?>">
 		<?php listings_jobs_the_company_logo(); ?>
 		<div class="position">

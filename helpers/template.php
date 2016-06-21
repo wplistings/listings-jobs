@@ -336,3 +336,103 @@ function listings_jobs_get_the_company_tagline( $post = null ) {
 
     return apply_filters( 'listings_jobs_the_company_tagline', $post->_company_tagline, $post );
 }
+
+/**
+ * Display or retrieve the current company twitter link with optional content.
+ *
+ * @access public
+ * @param mixed $id (default: null)
+ * @return void
+ */
+function listings_jobs_the_company_twitter( $before = '', $after = '', $echo = true, $post = null ) {
+    $company_twitter = listings_jobs_get_the_company_twitter( $post );
+
+    if ( strlen( $company_twitter ) == 0 )
+        return;
+
+    $company_twitter = esc_attr( strip_tags( $company_twitter ) );
+    $company_twitter = $before . '<a href="http://twitter.com/' . $company_twitter . '" class="company_twitter" target="_blank">' . $company_twitter . '</a>' . $after;
+
+    if ( $echo )
+        echo $company_twitter;
+    else
+        return $company_twitter;
+}
+
+/**
+ * listings_jobs_get_the_company_twitter function.
+ *
+ * @access public
+ * @param int $post (default: 0)
+ * @return void
+ */
+function listings_jobs_get_the_company_twitter( $post = null ) {
+    $post = get_post( $post );
+    if ( $post->post_type !== 'job_listing' )
+        return;
+
+    $company_twitter = $post->_company_twitter;
+
+    if ( strlen( $company_twitter ) == 0 )
+        return;
+
+    if ( strpos( $company_twitter, '@' ) === 0 )
+        $company_twitter = substr( $company_twitter, 1 );
+
+    return apply_filters( 'listings_jobs_the_company_twitter', $company_twitter, $post );
+}
+
+/**
+ * listings_jobs_job_listing_class function.
+ *
+ * @access public
+ * @param string $class (default: '')
+ * @param mixed $post_id (default: null)
+ * @return void
+ */
+function listings_jobs_job_listing_class( $class = '', $post_id = null ) {
+    // Separates classes with a single space, collates classes for post DIV
+    echo 'class="' . join( ' ', listings_jobs_get_job_listing_class( $class, $post_id ) ) . '"';
+}
+
+/**
+ * listings_jobs_get_job_listing_class function.
+ *
+ * @access public
+ * @return array
+ */
+function listings_jobs_get_job_listing_class( $class = '', $post_id = null ) {
+    $post = get_post( $post_id );
+
+    if ( $post->post_type !== 'job_listing' ) {
+        return array();
+    }
+
+    $classes = array();
+
+    if ( empty( $post ) ) {
+        return $classes;
+    }
+
+    $classes[] = 'job_listing';
+    if ( $job_type = listings_jobs_get_the_job_type() ) {
+        $classes[] = 'job-type-' . sanitize_title( $job_type->name );
+    }
+
+    if ( listings_jobs_is_position_filled( $post ) ) {
+        $classes[] = 'job_position_filled';
+    }
+
+    if ( listings_jobs_is_position_featured( $post ) ) {
+        $classes[] = 'job_position_featured';
+    }
+
+    if ( ! empty( $class ) ) {
+        if ( ! is_array( $class ) ) {
+            $class = preg_split( '#\s+#', $class );
+        }
+        $classes = array_merge( $classes, $class );
+    }
+
+    return get_post_class( $classes, $post->ID );
+}

@@ -1,4 +1,4 @@
-<li <?php job_listing_class(); ?>>
+<li <?php listings_jobs_job_listing_class(); ?>>
 	<a href="<?php listings_jobs_the_job_permalink(); ?>">
 		<div class="position">
 			<h3><?php the_title(); ?></h3>
