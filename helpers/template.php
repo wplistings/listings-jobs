@@ -91,3 +91,39 @@ function listings_jobs_get_application_method( $post = null ) {
 
     return apply_filters( 'listings_jobs_application_method', $method, $post );
 }
+
+/**
+ * listings_jobs_the_job_type function.
+ *
+ * @access public
+ * @return void
+ */
+function listings_jobs_the_job_type($post = null) {
+    if ($job_type = listings_jobs_get_the_job_type($post)) {
+        echo $job_type->name;
+    }
+}
+
+/**
+ * listings_jobs_get_the_job_type function.
+ *
+ * @access public
+ * @param mixed $post (default: null)
+ * @return void
+ */
+function listings_jobs_get_the_job_type($post = null) {
+    $post = get_post($post);
+    if ($post->post_type !== 'job_listing') {
+        return;
+    }
+
+    $types = wp_get_post_terms($post->ID, 'job_listing_type');
+
+    if ($types) {
+        $type = current($types);
+    } else {
+        $type = false;
+    }
+
+    return apply_filters('the_job_type', $type, $post);
+}

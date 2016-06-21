@@ -280,7 +280,7 @@ class Cpt {
 
 		switch ( $column ) {
 			case "job_listing_type" :
-				$type = get_the_job_type( $post );
+				$type = listings_jobs_get_the_job_type( $post );
 				if ( $type )
 					echo '<span class="job-type ' . $type->slug . '">' . $type->name . '</span>';
 			break;

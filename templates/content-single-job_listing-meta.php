@@ -13,7 +13,7 @@ do_action( 'single_job_listing_meta_before' ); ?>
 <ul class="job-listing-meta meta">
 	<?php do_action( 'single_job_listing_meta_start' ); ?>
 
-	<li class="job-type <?php echo get_the_job_type() ? sanitize_title( get_the_job_type()->slug ) : ''; ?>" itemprop="employmentType"><?php the_job_type(); ?></li>
+	<li class="job-type <?php echo listings_jobs_the_job_type() ? sanitize_title( listings_jobs_the_job_type()->slug ) : ''; ?>" itemprop="employmentType"><?php listings_jobs_the_job_type(); ?></li>
 
 	<li class="location" itemprop="jobLocation"><?php the_job_location(); ?></li>
 
