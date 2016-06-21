@@ -298,3 +298,41 @@ function listings_jobs_get_the_company_website( $post = null ) {
 
     return apply_filters( 'listings_jobs_the_company_website', $website, $post );
 }
+
+/**
+ * Display or retrieve the current company tagline with optional content.
+ *
+ * @access public
+ * @param mixed $id (default: null)
+ * @return void
+ */
+function listings_jobs_the_company_tagline( $before = '', $after = '', $echo = true, $post = null ) {
+    $company_tagline = listings_jobs_get_the_company_tagline( $post );
+
+    if ( strlen( $company_tagline ) == 0 )
+        return;
+
+    $company_tagline = esc_attr( strip_tags( $company_tagline ) );
+    $company_tagline = $before . $company_tagline . $after;
+
+    if ( $echo )
+        echo $company_tagline;
+    else
+        return $company_tagline;
+}
+
+/**
+ * get_the_company_tagline function.
+ *
+ * @access public
+ * @param int $post (default: 0)
+ * @return void
+ */
+function listings_jobs_get_the_company_tagline( $post = null ) {
+    $post = get_post( $post );
+
+    if ( $post->post_type !== 'job_listing' )
+        return;
+
+    return apply_filters( 'listings_jobs_the_company_tagline', $post->_company_tagline, $post );
+}

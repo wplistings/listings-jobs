@@ -6,7 +6,7 @@
 			<h3><?php the_title(); ?></h3>
 			<div class="company">
 				<?php listings_jobs_the_company_name( '<strong>', '</strong> ' ); ?>
-				<?php the_company_tagline( '<span class="tagline">', '</span>' ); ?>
+				<?php listings_jobs_the_company_tagline( '<span class="tagline">', '</span>' ); ?>
 			</div>
 		</div>
 		<div class="location">

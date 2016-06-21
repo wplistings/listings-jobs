@@ -21,6 +21,6 @@ if ( ! listings_jobs_get_the_company_name() ) {
 		<?php the_company_twitter(); ?>
 		<?php listings_jobs_the_company_name( '<strong itemprop="name">', '</strong>' ); ?>
 	</p>
-	<?php the_company_tagline( '<p class="tagline">', '</p>' ); ?>
+	<?php listings_jobs_the_company_tagline( '<p class="tagline">', '</p>' ); ?>
 	<?php listings_jobs_the_company_video(); ?>
 </div>
