@@ -302,7 +302,7 @@ class Cpt {
 				echo '</div>';
 			break;
 			case "job_location" :
-				the_job_location( $post );
+				listings_jobs_the_job_location( $post );
 			break;
 			case "job_listing_category" :
 				if ( ! $terms = get_the_term_list( $post->ID, $column, '', ', ', '' ) ) echo '<span class="na">&ndash;</span>'; else echo $terms;

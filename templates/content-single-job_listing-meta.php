@@ -15,7 +15,7 @@ do_action( 'single_job_listing_meta_before' ); ?>
 
 	<li class="job-type <?php echo listings_jobs_the_job_type() ? sanitize_title( listings_jobs_the_job_type()->slug ) : ''; ?>" itemprop="employmentType"><?php listings_jobs_the_job_type(); ?></li>
 
-	<li class="location" itemprop="jobLocation"><?php the_job_location(); ?></li>
+	<li class="location" itemprop="jobLocation"><?php listings_jobs_the_job_location(); ?></li>
 
 	<li class="date-posted" itemprop="datePosted"><date><?php printf( __( 'Posted %s ago', 'wp-job-manager' ), human_time_diff( get_post_time( 'U' ), current_time( 'timestamp' ) ) ); ?></date></li>
 
