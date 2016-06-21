@@ -201,3 +201,40 @@ function listings_jobs_get_the_company_logo( $post = null, $size = 'thumbnail' )
 
     return '';
 }
+
+/**
+ * Output the company video
+ */
+function listings_jobs_the_company_video( $post = null ) {
+    $video    = listings_jobs_get_the_company_video( $post );
+    $filetype = wp_check_filetype( $video );
+
+    // FV Wordpress Flowplayer Support for advanced video formats
+    if ( shortcode_exists( 'flowplayer' ) ) {
+        $video_embed = '[flowplayer src="' . esc_attr( $video ) . '"]';
+    } elseif ( ! empty( $filetype['ext'] ) ) {
+        $video_embed = wp_video_shortcode( array( 'src' => $video ) );
+    } else {
+        $video_embed = wp_oembed_get( $video );
+    }
+
+    $video_embed = apply_filters( 'listings_jobs_the_company_video_embed', $video_embed, $post );
+
+    if ( $video_embed ) {
+        echo '<div class="company_video">' . $video_embed . '</div>';
+    }
+}
+
+/**
+ * Get the company video URL
+ *
+ * @param mixed $post (default: null)
+ * @return string
+ */
+function listings_jobs_get_the_company_video( $post = null ) {
+    $post = get_post( $post );
+    if ( $post->post_type !== 'job_listing' ) {
+        return;
+    }
+    return apply_filters( 'listings_jobs_the_company_video', $post->_company_video, $post );
+}
