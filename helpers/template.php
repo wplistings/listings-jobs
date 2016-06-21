@@ -176,11 +176,11 @@ function listings_jobs_the_company_logo( $size = 'thumbnail', $default = null, $
     $logo = listings_jobs_get_the_company_logo( $post, $size );
 
     if ( has_post_thumbnail( $post ) ) {
-        echo '<img class="company_logo" src="' . esc_attr( $logo ) . '" alt="' . esc_attr( get_the_company_name( $post ) ) . '" />';
+        echo '<img class="company_logo" src="' . esc_attr( $logo ) . '" alt="' . esc_attr( listings_jobs_get_the_company_name( $post ) ) . '" />';
     } elseif ( $default ) {
-        echo '<img class="company_logo" src="' . esc_attr( $default ) . '" alt="' . esc_attr( get_the_company_name( $post ) ) . '" />';
+        echo '<img class="company_logo" src="' . esc_attr( $default ) . '" alt="' . esc_attr( listings_jobs_get_the_company_name( $post ) ) . '" />';
     } else {
-        echo '<img class="company_logo" src="' . esc_attr( apply_filters( 'listings_jobs_default_company_logo', LISTINGS_JOBS_PLUGIN_URL . '/assets/images/company.png' ) ) . '" alt="' . esc_attr( get_the_company_name( $post ) ) . '" />';
+        echo '<img class="company_logo" src="' . esc_attr( apply_filters( 'listings_jobs_default_company_logo', LISTINGS_JOBS_PLUGIN_URL . '/assets/images/company.png' ) ) . '" alt="' . esc_attr( listings_jobs_get_the_company_name( $post ) ) . '" />';
     }
 }
 
@@ -237,4 +237,42 @@ function listings_jobs_get_the_company_video( $post = null ) {
         return;
     }
     return apply_filters( 'listings_jobs_the_company_video', $post->_company_video, $post );
+}
+
+/**
+ * Display or retrieve the current company name with optional content.
+ *
+ * @access public
+ * @param mixed $id (default: null)
+ * @return void
+ */
+function listings_jobs_the_company_name( $before = '', $after = '', $echo = true, $post = null ) {
+    $company_name = listings_jobs_get_the_company_name( $post );
+
+    if ( strlen( $company_name ) == 0 )
+        return;
+
+    $company_name = esc_attr( strip_tags( $company_name ) );
+    $company_name = $before . $company_name . $after;
+
+    if ( $echo )
+        echo $company_name;
+    else
+        return $company_name;
+}
+
+/**
+ * get_the_company_name function.
+ *
+ * @access public
+ * @param int $post (default: null)
+ * @return string
+ */
+function listings_jobs_get_the_company_name( $post = null ) {
+    $post = get_post( $post );
+    if ( $post->post_type !== 'job_listing' ) {
+        return '';
+    }
+
+    return apply_filters( 'listings_jobs_the_company_name', $post->_company_name, $post );
 }

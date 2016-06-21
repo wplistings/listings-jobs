@@ -5,7 +5,7 @@
 		<div class="position">
 			<h3><?php the_title(); ?></h3>
 			<div class="company">
-				<?php the_company_name( '<strong>', '</strong> ' ); ?>
+				<?php listings_jobs_the_company_name( '<strong>', '</strong> ' ); ?>
 				<?php the_company_tagline( '<span class="tagline">', '</span>' ); ?>
 			</div>
 		</div>

@@ -7,7 +7,7 @@
  * @since  1.14.0
  */
 
-if ( ! get_the_company_name() ) {
+if ( ! listings_jobs_get_the_company_name() ) {
 	return;
 }
 ?>
@@ -19,7 +19,7 @@ if ( ! get_the_company_name() ) {
 			<a class="website" href="<?php echo esc_url( $website ); ?>" itemprop="url" target="_blank" rel="nofollow"><?php _e( 'Website', 'wp-job-manager' ); ?></a>
 		<?php endif; ?>
 		<?php the_company_twitter(); ?>
-		<?php the_company_name( '<strong itemprop="name">', '</strong>' ); ?>
+		<?php listings_jobs_the_company_name( '<strong itemprop="name">', '</strong>' ); ?>
 	</p>
 	<?php the_company_tagline( '<p class="tagline">', '</p>' ); ?>
 	<?php listings_jobs_the_company_video(); ?>
