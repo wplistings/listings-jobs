@@ -22,7 +22,7 @@ class Settings {
             $account_roles[ $key ] = $role['name'];
         }
 
-        return array_merge( $settings, array(
+        $settings = array_merge( $settings, array(
             'job_listings' => array(
                 __( 'Job Listings', 'listings_jobs' ),
                 array(
@@ -160,33 +160,31 @@ class Settings {
                     )
                 )
             ),
-            'job_pages' => array(
-                __( 'Pages', 'listings-jobs' ),
-                array(
-                    array(
-                        'name' 		=> 'listings_jobs_submit_job_form_page_id',
-                        'std' 		=> '',
-                        'label' 	=> __( 'Submit Job Form Page', 'listings-jobs' ),
-                        'desc'		=> __( 'Select the page where you have placed the [submit_job_form] shortcode. This lets the plugin know where the form is located.', 'listings-jobs' ),
-                        'type'      => 'page'
-                    ),
-                    array(
-                        'name' 		=> 'listings_jobs_job_dashboard_page_id',
-                        'std' 		=> '',
-                        'label' 	=> __( 'Job Dashboard Page', 'listings-jobs' ),
-                        'desc'		=> __( 'Select the page where you have placed the [job_dashboard] shortcode. This lets the plugin know where the dashboard is located.', 'listings-jobs' ),
-                        'type'      => 'page'
-                    ),
-                    array(
-                        'name' 		=> 'listings_jobs_jobs_page_id',
-                        'std' 		=> '',
-                        'label' 	=> __( 'Job Listings Page', 'listings-jobs' ),
-                        'desc'		=> __( 'Select the page where you have placed the [jobs] shortcode. This lets the plugin know where the job listings page is located.', 'listings-jobs' ),
-                        'type'      => 'page'
-                    ),
-                )
-            )
         ) );
+
+        $settings['listings_pages'][1][] = array(
+            'name' => 'listings_jobs_submit_job_form_page_id',
+            'std' => '',
+            'label' => __('Submit Job Form Page', 'listings-jobs'),
+            'desc' => __('Select the page where you have placed the [submit_job_form] shortcode. This lets the plugin know where the form is located.', 'listings-jobs'),
+            'type' => 'page'
+        );
+        $settings['listings_pages'][1][] = array(
+            'name' => 'listings_jobs_job_dashboard_page_id',
+            'std' => '',
+            'label' => __('Job Dashboard Page', 'listings-jobs'),
+            'desc' => __('Select the page where you have placed the [job_dashboard] shortcode. This lets the plugin know where the dashboard is located.', 'listings-jobs'),
+            'type' => 'page'
+        );
+        $settings['listings_pages'][1][] = array(
+            'name' => 'listings_jobs_jobs_page_id',
+            'std' => '',
+            'label' => __('Job Listings Page', 'listings-jobs'),
+            'desc' => __('Select the page where you have placed the [jobs] shortcode. This lets the plugin know where the job listings page is located.', 'listings-jobs'),
+            'type' => 'page'
+        );
+
+        return $settings;
     }
 
     public function after_settings()
