@@ -10,6 +10,8 @@ class Admin
     {
         $this->jobdetails = new JobDetails();
         $this->cpt = new Cpt();
+        $this->settings = new Settings();
+        $this->settings->hooks();
 
         add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
     }
