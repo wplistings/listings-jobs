@@ -193,13 +193,6 @@ class Settings {
     {
         ?>
         <script type="text/javascript">
-            jQuery('.nav-tab-wrapper a').click(function() {
-                jQuery('.settings_panel').hide();
-                jQuery('.nav-tab-active').removeClass('nav-tab-active');
-                jQuery( jQuery(this).attr('href') ).show();
-                jQuery(this).addClass('nav-tab-active');
-                return false;
-            });
         jQuery('.nav-tab-wrapper a:first').click();
 			jQuery('#setting-listings_jobs_enable_registration').change(function(){
                 if ( jQuery( this ).is(':checked') ) {
