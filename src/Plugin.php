@@ -24,6 +24,7 @@ class Plugin {
         // Register Ajax actions
         listings()->ajax->registerAction(new GetListings() );
 
+        $this->install = new Install();
         $this->post_types = new PostTypes();
         $this->shortcodes = new Shortcodes();
     }
@@ -41,13 +42,22 @@ class Plugin {
 
         // Actions
         add_action( 'after_setup_theme', array( $this, 'load_plugin_textdomain' ) );
-
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+
+        add_action( 'admin_init', array( $this, 'updater' ) );
     }
 
     public function activate() {
         $this->post_types->register_post_types();
+        Install::install();
         flush_rewrite_rules();
+    }
+    
+    public function updater() {
+        if ( version_compare( LISTINGS_JOBS_VERSION, get_option( 'listings_jobs_version' ), '>' ) ) {
+            Install::install();
+            flush_rewrite_rules();
+        }
     }
 
     public function load_plugin_textdomain() {
