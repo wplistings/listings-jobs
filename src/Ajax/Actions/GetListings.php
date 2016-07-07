@@ -8,7 +8,7 @@ class GetListings extends Action
 {
     public function getActionString()
     {
-        return 'get_listings';
+        return 'get_job_listings';
     }
 
     public function doAction()

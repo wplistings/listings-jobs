@@ -2,6 +2,7 @@
 
 namespace Listings\Jobs;
 
+use Listings\Ajax\Handler;
 use Listings\Jobs\Admin\Admin;
 use Listings\Jobs\Ajax\Actions\GetListings;
 use Listings\Jobs\Forms\EditJob;
@@ -24,6 +25,7 @@ class Plugin {
         // Register Ajax actions
         listings()->ajax->registerAction(new GetListings() );
 
+        $this->install = new Install();
         $this->post_types = new PostTypes();
         $this->shortcodes = new Shortcodes();
     }
@@ -41,13 +43,22 @@ class Plugin {
 
         // Actions
         add_action( 'after_setup_theme', array( $this, 'load_plugin_textdomain' ) );
-
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+
+        add_action( 'admin_init', array( $this, 'updater' ) );
     }
 
     public function activate() {
         $this->post_types->register_post_types();
+        Install::install();
         flush_rewrite_rules();
+    }
+    
+    public function updater() {
+        if ( version_compare( LISTINGS_JOBS_VERSION, get_option( 'listings_jobs_version' ), '>' ) ) {
+            Install::install();
+            flush_rewrite_rules();
+        }
     }
 
     public function load_plugin_textdomain() {
@@ -64,6 +75,25 @@ class Plugin {
     }
 
     public function enqueue_scripts() {
+        $ajax_url         = Handler::get_endpoint();
+        $ajax_filter_deps = array( 'jquery', 'jquery-deserialize' );
+        $ajax_data 		  = array(
+            'ajax_url'                => $ajax_url,
+            'is_rtl'                  => is_rtl() ? 1 : 0,
+            'i18n_load_prev_listings' => __( 'Load previous listings', 'listings' ),
+        );
+
         wp_enqueue_style( 'listings-jobs', LISTINGS_JOBS_PLUGIN_URL . '/assets/css/frontend.css' );
+
+        wp_register_script( 'listings-ajax-filters', LISTINGS_JOBS_PLUGIN_URL . '/assets/js/ajax-filters.min.js', $ajax_filter_deps, LISTINGS_JOBS_VERSION, true );
+        wp_localize_script( 'listings-ajax-filters', 'listings_ajax_filters', $ajax_data );
+        wp_enqueue_script( 'listings-job-application', LISTINGS_JOBS_PLUGIN_URL . '/assets/js/job-application.min.js', array( 'jquery' ), LISTINGS_JOBS_VERSION, true );
+        wp_enqueue_script( 'listings-job-submission', LISTINGS_JOBS_PLUGIN_URL . '/assets/js/job-submission.min.js', array( 'jquery' ), LISTINGS_JOBS_VERSION, true );
+
+        wp_register_script( 'listings-job-dashboard', LISTINGS_JOBS_PLUGIN_URL . '/assets/js/job-dashboard.min.js', array( 'jquery' ), LISTINGS_JOBS_VERSION, true );
+        wp_localize_script( 'listings-job-dashboard', 'listings_job_dashboard', array(
+            'i18n_confirm_delete' => __( 'Are you sure you want to delete this listing?', 'listings' )
+        ) );
+        wp_enqueue_script( 'listings-job-dashboard');
     }
 }
