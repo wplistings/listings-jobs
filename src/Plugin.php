@@ -32,9 +32,6 @@ class Plugin {
 
     public function hooks()
     {
-        // Activation - works with symlinks
-        register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $this, 'activate' ) );
-
         // Switch theme
         add_action( 'after_switch_theme', 'flush_rewrite_rules', 15 );
         add_action( 'after_switch_theme', array( $this->post_types, 'register_post_types' ), 11 );
@@ -46,12 +43,6 @@ class Plugin {
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
 
         add_action( 'admin_init', array( $this, 'updater' ) );
-    }
-
-    public function activate() {
-        $this->post_types->register_post_types();
-        Install::install();
-        flush_rewrite_rules();
     }
     
     public function updater() {

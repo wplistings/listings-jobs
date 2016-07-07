@@ -32,5 +32,9 @@ function __load_listings_jobs() {
 // autoloader
 require 'vendor/autoload.php';
 
+register_activation_hook( basename( dirname( LISTINGS_JOBS_PLUGIN_FILE ) ) . '/' . basename( LISTINGS_JOBS_PLUGIN_FILE ), function() {
+    \Listings\Jobs\Install::install();
+});
+
 // create plugin object
 add_action( 'listings_init', '__load_listings_jobs', 10 );
