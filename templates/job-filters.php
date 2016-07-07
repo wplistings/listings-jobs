@@ -1,4 +1,4 @@
-<?php wp_enqueue_script( 'wp-job-manager-ajax-filters' ); ?>
+<?php wp_enqueue_script( 'listings-ajax-filters' ); ?>
 
 <?php do_action( 'job_manager_job_filters_before', $atts ); ?>
 

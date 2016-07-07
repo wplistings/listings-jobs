@@ -306,7 +306,7 @@ class Shortcodes {
 
 				<?php if ( $jobs->found_posts > $per_page && $show_more ) : ?>
 
-					<?php wp_enqueue_script( 'wp-job-manager-ajax-filters' ); ?>
+					<?php wp_enqueue_script( 'listings-ajax-filters' ); ?>
 
 					<?php if ( $show_pagination ) : ?>
 						<?php echo listings_get_listing_pagination( $jobs->max_num_pages ); ?>

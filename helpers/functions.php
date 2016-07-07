@@ -41,7 +41,7 @@ if ( ! function_exists( 'listings_jobs_get_listings' ) ) :
         );
 
         // WPML workaround
-        if ( ( strstr( $_SERVER['REQUEST_URI'], '/jm-ajax/' ) || ! empty( $_GET['jm-ajax'] ) ) && isset( $_POST['lang'] ) ) {
+        if ( ( strstr( $_SERVER['REQUEST_URI'], '/listings-ajax/' ) || ! empty( $_GET['listings-ajax'] ) ) && isset( $_POST['lang'] ) ) {
             do_action( 'wpml_switch_language', sanitize_text_field( $_POST['lang'] ) );
         }
 
