@@ -2,18 +2,6 @@
 @import "../mixins/icons";
 @import "../mixins/colours";
 
-@primary: 			#999999; 									/* Primary colour for buttons (alt) */
-@primarytext: 		desaturate(lighten(@primary,50%),18%);		/* Text on primary colour bg */
-
-@secondary: 		desaturate(lighten(@primary,40%),18%);		/* Secondary buttons */
-@secondarytext:	 	desaturate(darken(@secondary,60%),18%);		/* Text on secondary colour bg */
-
-@highlight: 		spin( @primary, 150 ); 						/* Prices, In stock labels, sales flash */
-@highlightext:		desaturate(lighten(@highlight,50%),18%);	/* Text on highlight colour bg */
-
-@contentbg: 		#fff; 										/* Content BG - Tabs (active state) */
-@subtext: 			#777; 										/* small, breadcrumbs etc */
-
 .display-icon {
 	display: inline-block;
 	width: 16px;
@@ -31,58 +19,6 @@
 	*overflow: auto;
 	*zoom: 1;
 	*display: inline;
-}
-
-/* =Global styles/layout
--------------------------------------------------------------- */
-.job-manager-message, .job-manager-error, .job-manager-info {
-	padding: 1em 2em 1em 3.5em !important;
-	margin: 0 0 2em !important;
-	position: relative;
-	background-color: lighten(@secondary,5%);
-	color: @secondarytext;
-	border-top: 3px solid @primary;
-	list-style: none outside !important;
-	width: auto;
-	.clearfix;
-	box-shadow: 0 1px 1px rgba(0,0,0,0.2);
-	&:before {
-		content: "";
-		font-family: sans-serif;
-		display: inline-block;
-		position: absolute;
-		top: 1em;
-		left: 1.5em;
-	}
-	li {
-		list-style: none outside !important;
-		padding-left: 0 !important;
-		margin-left: 0 !important;
-	}
-	&.job-manager-message {
-		border-top-color: #8fae1b;
-		&:before {
-			color:#8fae1b;
-			content: "\2713";
-		}
-	}
-	&.job-manager-info {
-		border-top-color: #1e85be;
-		&:before {
-			color:#1e85be;
-			content: "i";
-			font-family: Times, Georgia, serif;
-			font-style: italic;
-		}
-	}
-	&.job-manager-error {
-		border-top-color: #b81c23;
-		&:before {
-			color:#b81c23;
-			content: "\00d7";
-			font-weight: 700;
-		}
-	}
 }
 
 .job-manager-form {
@@ -144,52 +80,10 @@
 			display: block;
 			line-height: 1.2em;
 		}
-		.job-manager-uploaded-files {
-			display: table;
-			.job-manager-uploaded-file {
-				line-height: 2em;
-				font-style: italic;
-				margin-bottom: 1em;
-				display: block;
-				.job-manager-uploaded-file-preview {
-					img {
-						height: 64px;
-						margin: 0;
-						vertical-align: top;
-					}
-					a {
-						line-height: 64px;
-						display: inline-block;
-						padding: 0 0 0 1em;
-					}
-				}
-				.job-manager-uploaded-file-name {
-					display: block;
-				}
-			}
-		}
+
 	}
 	.submit-job {
 		padding: 1em 0;
-	}
-	.job-manager-term-checklist {
-		list-style: none outside;
-		max-height: 200px;
-		overflow: auto;
-		margin: 0;
-		li {
-			list-style: none outside;
-			margin: 0;
-			display: block;
-			float: none;
-			label {
-				width: auto;
-				float: none;
-			}
-			li {
-				margin: 0 0 0 2em;
-			}
-		}
 	}
 }
 div.job_listings {
