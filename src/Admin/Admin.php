@@ -8,6 +8,7 @@ class Admin
 {
     public function __construct()
     {
+        $this->setup = new Setup();
         $this->jobdetails = new JobDetails();
         $this->cpt = new Cpt();
         $this->settings = new Settings();

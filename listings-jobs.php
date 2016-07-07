@@ -11,6 +11,7 @@
 define( 'LISTINGS_JOBS_VERSION', '1.0.0' );
 define( 'LISTINGS_JOBS_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'LISTINGS_JOBS_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
+define( 'LISTINGS_JOBS_PLUGIN_FILE', __FILE__ );
 
 /**
  * @return \Listings\Jobs\Plugin
@@ -30,6 +31,10 @@ function __load_listings_jobs() {
 
 // autoloader
 require 'vendor/autoload.php';
+
+register_activation_hook( basename( dirname( LISTINGS_JOBS_PLUGIN_FILE ) ) . '/' . basename( LISTINGS_JOBS_PLUGIN_FILE ), function() {
+    \Listings\Jobs\Install::install();
+});
 
 // create plugin object
 add_action( 'listings_init', '__load_listings_jobs', 10 );
