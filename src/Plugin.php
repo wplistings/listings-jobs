@@ -2,6 +2,7 @@
 
 namespace Listings\Jobs;
 
+use Listings\Ajax\Handler;
 use Listings\Jobs\Admin\Admin;
 use Listings\Jobs\Ajax\Actions\GetListings;
 use Listings\Jobs\Forms\EditJob;
@@ -74,6 +75,17 @@ class Plugin {
     }
 
     public function enqueue_scripts() {
+        $ajax_url         = Handler::get_endpoint();
+        $ajax_filter_deps = array( 'jquery', 'jquery-deserialize' );
+        $ajax_data 		  = array(
+            'ajax_url'                => $ajax_url,
+            'is_rtl'                  => is_rtl() ? 1 : 0,
+            'i18n_load_prev_listings' => __( 'Load previous listings', 'listings' ),
+        );
+
         wp_enqueue_style( 'listings-jobs', LISTINGS_JOBS_PLUGIN_URL . '/assets/css/frontend.css' );
+
+        wp_register_script( 'listings-ajax-filters', LISTINGS_JOBS_PLUGIN_URL . '/assets/js/ajax-filters.min.js', $ajax_filter_deps, LISTINGS_VERSION, true );
+        wp_localize_script( 'listings-ajax-filters', 'listings_ajax_filters', $ajax_data );
     }
 }
