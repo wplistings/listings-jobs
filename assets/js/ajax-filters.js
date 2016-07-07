@@ -178,7 +178,7 @@ jQuery( document ).ready( function ( $ ) {
 	$( '#search_keywords, #search_location, .job_types :input, #search_categories, .job-manager-filter' ).change( function() {
 		var target   = $( this ).closest( 'div.job_listings' );
 		target.triggerHandler( 'update_results', [ 1, false ] );
-		job_manager_store_state( target, 1 );
+		listings_store_state( target, 1 );
 	} )
 
 	.on( "keyup", function(e) {
@@ -197,7 +197,7 @@ jQuery( document ).ready( function ( $ ) {
 
 		target.triggerHandler( 'reset' );
 		target.triggerHandler( 'update_results', [ 1, false ] );
-		job_manager_store_state( target, 1 );
+		listings_store_state( target, 1 );
 
 		return false;
 	} );
@@ -220,7 +220,7 @@ jQuery( document ).ready( function ( $ ) {
 		} else {
 			page = page + 1;
 			$( this ).data( 'page', page );
-			job_manager_store_state( target, page );
+			listings_store_state( target, page );
 		}
 
 		target.triggerHandler( 'update_results', [ page, true, loading_previous ] );
@@ -231,7 +231,7 @@ jQuery( document ).ready( function ( $ ) {
 		var target = $( this ).closest( 'div.job_listings' );
 		var page   = $( this ).data( 'page' );
 
-		job_manager_store_state( target, page );
+		listings_store_state( target, page );
 
 		target.triggerHandler( 'update_results', [ page, false ] );
 
@@ -257,12 +257,12 @@ jQuery( document ).ready( function ( $ ) {
 
 	var location = document.location.href.split('#')[0];
 
-	function job_manager_store_state( target, page ) {
+	function listings_store_state( target, page ) {
 		if ( $supports_html5_history ) {
 			var form  = target.find( '.job_filters' );
 			var data  = $( form ).serialize();
 			var index = $( 'div.job_listings' ).index( target );
-			window.history.replaceState( { id: 'job_manager_state', page: page, data: data, index: index }, '', location + '#s=1' );
+			window.history.replaceState( { id: 'listings_state', page: page, data: data, index: index }, '', location + '#s=1' );
 		}
 	}
 
@@ -276,7 +276,7 @@ jQuery( document ).ready( function ( $ ) {
 
 	   		if ( window.history.state && window.location.hash ) {
 	   			var state = window.history.state;
-	   			if ( state.id && 'job_manager_state' === state.id && index == state.index ) {
+	   			if ( state.id && 'listings_state' === state.id && index == state.index ) {
 					inital_page = state.page;
 					form.deserialize( state.data );
 					form.find( ':input[name^="search_categories"]' ).not(':input[type="hidden"]').trigger( 'chosen:updated' );
