@@ -85,7 +85,8 @@ class Plugin {
 
         wp_enqueue_style( 'listings-jobs', LISTINGS_JOBS_PLUGIN_URL . '/assets/css/frontend.css' );
 
-        wp_register_script( 'listings-ajax-filters', LISTINGS_JOBS_PLUGIN_URL . '/assets/js/ajax-filters.min.js', $ajax_filter_deps, LISTINGS_VERSION, true );
+        wp_register_script( 'listings-ajax-filters', LISTINGS_JOBS_PLUGIN_URL . '/assets/js/ajax-filters.min.js', $ajax_filter_deps, LISTINGS_JOBS_VERSION, true );
         wp_localize_script( 'listings-ajax-filters', 'listings_ajax_filters', $ajax_data );
+        wp_enqueue_script( 'listings-job-application', LISTINGS_JOBS_PLUGIN_URL . '/assets/js/job-application.min.js', array( 'jquery' ), LISTINGS_JOBS_VERSION, true );
     }
 }
