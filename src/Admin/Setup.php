@@ -226,7 +226,7 @@ class Setup {
 					<h3><?php _e( 'Support the Ongoing Development of this Plugin', 'listings-jobs' ); ?></h3>
 					<p><?php _e( 'There are many ways to support open-source projects such as Listings, for example code contribution, translation, or even telling your friends how awesome the plugin (hopefully) is. Thanks in advance for your support - it is much appreciated!', 'listings-jobs' ); ?></p>
 					<ul>
-						<li class="icon-review"><a href="https://wordpress.org/support/view/plugin-reviews/listings-jobsr#postform"><?php _e( 'Leave a positive review', 'listings-jobs' ); ?></a></li>
+						<li class="icon-review"><a href="https://wordpress.org/support/view/plugin-reviews/listings-jobs#postform"><?php _e( 'Leave a positive review', 'listings-jobs' ); ?></a></li>
 						<li class="icon-localization"><a href="https://www.transifex.com/projects/p/listings-jobs/"><?php _e( 'Contribute a localization', 'listings-jobs' ); ?></a></li>
 						<li class="icon-code"><a href="https://github.com/TheLookandFeel/listings-jobs"><?php _e( 'Contribute code or report a bug', 'listings-jobs' ); ?></a></li>
 						<li class="icon-forum"><a href="https://wordpress.org/support/plugin/listings-jobs"><?php _e( 'Help other users on the forums', 'listings-jobs' ); ?></a></li>
