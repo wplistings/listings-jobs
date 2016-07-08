@@ -4,6 +4,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     exit();
 }
 
+wp_clear_scheduled_hook( 'listings_jobs_check_for_expired_jobs' );
+
 wp_trash_post( get_option( 'listings_jobs_submit_job_form_page_id' ) );
 wp_trash_post( get_option( 'listings_jobs_job_dashboard_page_id' ) );
 wp_trash_post( get_option( 'listings_jobs_jobs_page_id' ) );
