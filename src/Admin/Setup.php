@@ -125,7 +125,7 @@ class Setup {
 
 				<h3><?php _e( 'Setup Wizard Introduction', 'listings-jobs' ); ?></h3>
 
-				<p><?php _e( 'Thanks for installing <em>Listings Jobs</em>!', 'listings-jobs' ); ?></p>
+				<p><?php _e( 'Welcome and thank you for installing <em>Listings Jobs</em>!', 'listings-jobs' ); ?></p>
 				<p><?php _e( 'This setup wizard will help you get started by creating the pages for job submission, job management, and listing your jobs.', 'listings-jobs' ); ?></p>
 				<p><?php printf( __( 'If you want to skip the wizard and setup the pages and shortcodes yourself manually, the process is still relatively simple. Refer to the %sdocumentation%s for help.', 'listings-jobs' ), '<a href="https://wpjobmanager.com/documentation/">', '</a>' ); ?></p>
 
