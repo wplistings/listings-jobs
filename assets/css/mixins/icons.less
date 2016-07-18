@@ -1,5 +1,20 @@
-.jm-icon {
-  font-family: "job-manager" !important;
+// This needs some love later on. It now uses the font files from the main
+// plugin. It compiles fine, but it just looks weird. Alternative is
+// bundling the font files with all core plugins, which I'm not really
+// looking forward to doing. Time will tell what's best here.
+@font-face {
+  font-family: 'listings';
+  src: url('../../../listings/assets/font/listings.eot?4963673');
+  src: url('../../../listings/assets/font/listings.eot?4963673#iefix') format('embedded-opentype'),
+  url('../../../listings/assets/font/listings.woff?4963673') format('woff'),
+  url('../../../listings/assets/font/listings.ttf?4963673') format('truetype'),
+  url('../../../listings/assets/font/listings.svg?4963673#listings') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.listings-icon {
+  font-family: "listings" !important;
   font-style: normal;
   font-weight: normal;
   speak: none;
