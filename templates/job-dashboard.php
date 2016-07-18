@@ -1,5 +1,5 @@
 <div id="job-manager-job-dashboard">
-	<p><?php _e( 'Your listings are shown in the table below.', 'wp-job-manager' ); ?></p>
+	<p><?php _e( 'Your listings are shown in the table below.', 'listings-jobs' ); ?></p>
 	<table class="job-manager-jobs">
 		<thead>
 			<tr>
@@ -11,7 +11,7 @@
 		<tbody>
 			<?php if ( ! $jobs ) : ?>
 				<tr>
-					<td colspan="6"><?php _e( 'You do not have any active listings.', 'wp-job-manager' ); ?></td>
+					<td colspan="6"><?php _e( 'You do not have any active listings.', 'listings-jobs' ); ?></td>
 				</tr>
 			<?php else : ?>
 				<?php foreach ( $jobs as $job ) : ?>
@@ -30,30 +30,30 @@
 
 											switch ( $job->post_status ) {
 												case 'publish' :
-													$actions['edit'] = array( 'label' => __( 'Edit', 'wp-job-manager' ), 'nonce' => false );
+													$actions['edit'] = array( 'label' => __( 'Edit', 'listings-jobs' ), 'nonce' => false );
 
 													if ( listings_jobs_is_position_filled( $job ) ) {
-														$actions['mark_not_filled'] = array( 'label' => __( 'Mark not filled', 'wp-job-manager' ), 'nonce' => true );
+														$actions['mark_not_filled'] = array( 'label' => __( 'Mark not filled', 'listings-jobs' ), 'nonce' => true );
 													} else {
-														$actions['mark_filled'] = array( 'label' => __( 'Mark filled', 'wp-job-manager' ), 'nonce' => true );
+														$actions['mark_filled'] = array( 'label' => __( 'Mark filled', 'listings-jobs' ), 'nonce' => true );
 													}
 
-													$actions['duplicate'] = array( 'label' => __( 'Duplicate', 'wp-job-manager' ), 'nonce' => true );
+													$actions['duplicate'] = array( 'label' => __( 'Duplicate', 'listings-jobs' ), 'nonce' => true );
 													break;
 												case 'expired' :
 													if ( listings_get_permalink( 'submit_job_form' ) ) {
-														$actions['relist'] = array( 'label' => __( 'Relist', 'wp-job-manager' ), 'nonce' => true );
+														$actions['relist'] = array( 'label' => __( 'Relist', 'listings-jobs' ), 'nonce' => true );
 													}
 													break;
 												case 'pending_payment' :
 												case 'pending' :
 													if ( listings_user_can_edit_pending_submissions() ) {
-														$actions['edit'] = array( 'label' => __( 'Edit', 'wp-job-manager' ), 'nonce' => false );
+														$actions['edit'] = array( 'label' => __( 'Edit', 'listings-jobs' ), 'nonce' => false );
 													}
 												break;
 											}
 
-											$actions['delete'] = array( 'label' => __( 'Delete', 'wp-job-manager' ), 'nonce' => true );
+											$actions['delete'] = array( 'label' => __( 'Delete', 'listings-jobs' ), 'nonce' => true );
 											$actions           = apply_filters( 'job_manager_my_job_actions', $actions, $job );
 
 											foreach ( $actions as $action => $value ) {

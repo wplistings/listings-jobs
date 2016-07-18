@@ -11,7 +11,7 @@
 
 		<h1><?php the_title(); ?></h1>
 
-		<p class="meta"><?php listings_jobs_the_job_location( false ); ?> &mdash; <date><?php printf( __( 'Posted %s ago', 'wp-job-manager' ), human_time_diff( get_post_time( 'U' ), current_time( 'timestamp' ) ) ); ?></date></p>
+		<p class="meta"><?php listings_jobs_the_job_location( false ); ?> &mdash; <date><?php printf( __( 'Posted %s ago', 'listings-jobs' ), human_time_diff( get_post_time( 'U' ), current_time( 'timestamp' ) ) ); ?></date></p>
 
 	</div>
 </a>

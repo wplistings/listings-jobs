@@ -13,24 +13,24 @@ class RecentJobs extends Widget {
         global $wp_post_types;
 
         $this->widget_cssclass    = 'job_manager widget_recent_jobs';
-        $this->widget_description = __( 'Display a list of recent listings on your site, optionally matching a keyword and location.', 'wp-job-manager' );
+        $this->widget_description = __( 'Display a list of recent listings on your site, optionally matching a keyword and location.', 'listings-jobs' );
         $this->widget_id          = 'widget_recent_jobs';
-        $this->widget_name        = sprintf( __( 'Recent %s', 'wp-job-manager' ), $wp_post_types['job_listing']->labels->name );
+        $this->widget_name        = sprintf( __( 'Recent %s', 'listings-jobs' ), $wp_post_types['job_listing']->labels->name );
         $this->settings           = array(
             'title' => array(
                 'type'  => 'text',
-                'std'   => sprintf( __( 'Recent %s', 'wp-job-manager' ), $wp_post_types['job_listing']->labels->name ),
-                'label' => __( 'Title', 'wp-job-manager' )
+                'std'   => sprintf( __( 'Recent %s', 'listings-jobs' ), $wp_post_types['job_listing']->labels->name ),
+                'label' => __( 'Title', 'listings-jobs' )
             ),
             'keyword' => array(
                 'type'  => 'text',
                 'std'   => '',
-                'label' => __( 'Keyword', 'wp-job-manager' )
+                'label' => __( 'Keyword', 'listings-jobs' )
             ),
             'location' => array(
                 'type'  => 'text',
                 'std'   => '',
-                'label' => __( 'Location', 'wp-job-manager' )
+                'label' => __( 'Location', 'listings-jobs' )
             ),
             'number' => array(
                 'type'  => 'number',
@@ -38,7 +38,7 @@ class RecentJobs extends Widget {
                 'min'   => 1,
                 'max'   => '',
                 'std'   => 10,
-                'label' => __( 'Number of listings to show', 'wp-job-manager' )
+                'label' => __( 'Number of listings to show', 'listings-jobs' )
             )
         );
         $this->register();
