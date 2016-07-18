@@ -16,7 +16,7 @@ if ( ! listings_jobs_get_the_company_name() ) {
 
 	<p class="name">
 		<?php if ( $website = listings_jobs_get_the_company_website() ) : ?>
-			<a class="website" href="<?php echo esc_url( $website ); ?>" itemprop="url" target="_blank" rel="nofollow"><?php _e( 'Website', 'wp-job-manager' ); ?></a>
+			<a class="website" href="<?php echo esc_url( $website ); ?>" itemprop="url" target="_blank" rel="nofollow"><?php _e( 'Website', 'listings-jobs' ); ?></a>
 		<?php endif; ?>
 		<?php listings_jobs_the_company_twitter(); ?>
 		<?php listings_jobs_the_company_name( '<strong itemprop="name">', '</strong>' ); ?>

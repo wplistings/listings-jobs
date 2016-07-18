@@ -31,19 +31,19 @@ class SubmitJob extends Form {
 
 		$this->steps  = (array) apply_filters( 'submit_job_steps', array(
 			'submit' => array(
-				'name'     => __( 'Submit Details', 'wp-job-manager' ),
+				'name'     => __( 'Submit Details', 'listings-jobs' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10
 				),
 			'preview' => array(
-				'name'     => __( 'Preview', 'wp-job-manager' ),
+				'name'     => __( 'Preview', 'listings-jobs' ),
 				'view'     => array( $this, 'preview' ),
 				'handler'  => array( $this, 'preview_handler' ),
 				'priority' => 20
 			),
 			'done' => array(
-				'name'     => __( 'Done', 'wp-job-manager' ),
+				'name'     => __( 'Done', 'listings-jobs' ),
 				'view'     => array( $this, 'done' ),
 				'priority' => 30
 			)
@@ -104,38 +104,38 @@ class SubmitJob extends Form {
 		$allowed_application_method = get_option( 'job_manager_allowed_application_method', '' );
 		switch ( $allowed_application_method ) {
 			case 'email' :
-				$application_method_label       = __( 'Application email', 'wp-job-manager' );
-				$application_method_placeholder = __( 'you@yourdomain.com', 'wp-job-manager' );
+				$application_method_label       = __( 'Application email', 'listings-jobs' );
+				$application_method_placeholder = __( 'you@yourdomain.com', 'listings-jobs' );
 			break;
 			case 'url' :
-				$application_method_label       = __( 'Application URL', 'wp-job-manager' );
-				$application_method_placeholder = __( 'http://', 'wp-job-manager' );
+				$application_method_label       = __( 'Application URL', 'listings-jobs' );
+				$application_method_placeholder = __( 'http://', 'listings-jobs' );
 			break;
 			default :
-				$application_method_label       = __( 'Application email/URL', 'wp-job-manager' );
-				$application_method_placeholder = __( 'Enter an email address or website URL', 'wp-job-manager' );
+				$application_method_label       = __( 'Application email/URL', 'listings-jobs' );
+				$application_method_placeholder = __( 'Enter an email address or website URL', 'listings-jobs' );
 			break;
 		}
 
 		$this->fields = apply_filters( 'submit_job_form_fields', array(
 			'job' => array(
 				'job_title' => array(
-					'label'       => __( 'Job Title', 'wp-job-manager' ),
+					'label'       => __( 'Job Title', 'listings-jobs' ),
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 1
 				),
 				'job_location' => array(
-					'label'       => __( 'Location', 'wp-job-manager' ),
-					'description' => __( 'Leave this blank if the location is not important', 'wp-job-manager' ),
+					'label'       => __( 'Location', 'listings-jobs' ),
+					'description' => __( 'Leave this blank if the location is not important', 'listings-jobs' ),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __( 'e.g. "London"', 'wp-job-manager' ),
+					'placeholder' => __( 'e.g. "London"', 'listings-jobs' ),
 					'priority'    => 2
 				),
 				'job_type' => array(
-					'label'       => __( 'Job type', 'wp-job-manager' ),
+					'label'       => __( 'Job type', 'listings-jobs' ),
 					'type'        => 'term-select',
 					'required'    => true,
 					'placeholder' => '',
@@ -144,7 +144,7 @@ class SubmitJob extends Form {
 					'taxonomy'    => 'job_listing_type'
 				),
 				'job_category' => array(
-					'label'       => __( 'Job category', 'wp-job-manager' ),
+					'label'       => __( 'Job category', 'listings-jobs' ),
 					'type'        => 'term-multiselect',
 					'required'    => true,
 					'placeholder' => '',
@@ -153,7 +153,7 @@ class SubmitJob extends Form {
 					'taxonomy'    => 'job_listing_category'
 				),
 				'job_description' => array(
-					'label'       => __( 'Description', 'wp-job-manager' ),
+					'label'       => __( 'Description', 'listings-jobs' ),
 					'type'        => 'wp-editor',
 					'required'    => true,
 					'placeholder' => '',
@@ -169,43 +169,43 @@ class SubmitJob extends Form {
 			),
 			'company' => array(
 				'company_name' => array(
-					'label'       => __( 'Company name', 'wp-job-manager' ),
+					'label'       => __( 'Company name', 'listings-jobs' ),
 					'type'        => 'text',
 					'required'    => true,
-					'placeholder' => __( 'Enter the name of the company', 'wp-job-manager' ),
+					'placeholder' => __( 'Enter the name of the company', 'listings-jobs' ),
 					'priority'    => 1
 				),
 				'company_website' => array(
-					'label'       => __( 'Website', 'wp-job-manager' ),
+					'label'       => __( 'Website', 'listings-jobs' ),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __( 'http://', 'wp-job-manager' ),
+					'placeholder' => __( 'http://', 'listings-jobs' ),
 					'priority'    => 2
 				),
 				'company_tagline' => array(
-					'label'       => __( 'Tagline', 'wp-job-manager' ),
+					'label'       => __( 'Tagline', 'listings-jobs' ),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __( 'Briefly describe your company', 'wp-job-manager' ),
+					'placeholder' => __( 'Briefly describe your company', 'listings-jobs' ),
 					'maxlength'   => 64,
 					'priority'    => 3
 				),
 				'company_video' => array(
-					'label'       => __( 'Video', 'wp-job-manager' ),
+					'label'       => __( 'Video', 'listings-jobs' ),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __( 'A link to a video about your company', 'wp-job-manager' ),
+					'placeholder' => __( 'A link to a video about your company', 'listings-jobs' ),
 					'priority'    => 4
 				),
 				'company_twitter' => array(
-					'label'       => __( 'Twitter username', 'wp-job-manager' ),
+					'label'       => __( 'Twitter username', 'listings-jobs' ),
 					'type'        => 'text',
 					'required'    => false,
-					'placeholder' => __( '@yourcompany', 'wp-job-manager' ),
+					'placeholder' => __( '@yourcompany', 'listings-jobs' ),
 					'priority'    => 5
 				),
 				'company_logo' => array(
-					'label'       => __( 'Logo', 'wp-job-manager' ),
+					'label'       => __( 'Logo', 'listings-jobs' ),
 					'type'        => 'file',
 					'required'    => false,
 					'placeholder' => '',
@@ -236,7 +236,7 @@ class SubmitJob extends Form {
 		foreach ( $this->fields as $group_key => $group_fields ) {
 			foreach ( $group_fields as $key => $field ) {
 				if ( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) {
-					return new \WP_Error( 'validation-error', sprintf( __( '%s is a required field', 'wp-job-manager' ), $field['label'] ) );
+					return new \WP_Error( 'validation-error', sprintf( __( '%s is a required field', 'listings-jobs' ), $field['label'] ) );
 				}
 				if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ) ) ) {
 					if ( is_array( $values[ $group_key ][ $key ] ) ) {
@@ -246,7 +246,7 @@ class SubmitJob extends Form {
 					}
 					foreach ( $check_value as $term ) {
 						if ( ! term_exists( $term, $field['taxonomy'] ) ) {
-							return new \WP_Error( 'validation-error', sprintf( __( '%s is invalid', 'wp-job-manager' ), $field['label'] ) );
+							return new \WP_Error( 'validation-error', sprintf( __( '%s is invalid', 'listings-jobs' ), $field['label'] ) );
 						}
 					}
 				}
@@ -262,7 +262,7 @@ class SubmitJob extends Form {
 							$file_info = wp_check_filetype( $file_url );
 
 							if ( ! is_numeric( $file_url ) && $file_info && ! in_array( $file_info['type'], $field['allowed_mime_types'] ) ) {
-								throw new \Exception( sprintf( __( '"%s" (filetype %s) needs to be one of the following file types: %s', 'wp-job-manager' ), $field['label'], $file_info['ext'], implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
+								throw new \Exception( sprintf( __( '"%s" (filetype %s) needs to be one of the following file types: %s', 'listings-jobs' ), $field['label'], $file_info['ext'], implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
 							}
 						}
 					}
@@ -277,7 +277,7 @@ class SubmitJob extends Form {
 			switch ( $allowed_application_method ) {
 				case 'email' :
 					if ( ! is_email( $values['job']['application'] ) ) {
-						throw new \Exception( __( 'Please enter a valid application email address', 'wp-job-manager' ) );
+						throw new \Exception( __( 'Please enter a valid application email address', 'listings-jobs' ) );
 					}
 				break;
 				case 'url' :
@@ -286,7 +286,7 @@ class SubmitJob extends Form {
 						$values['job']['application'] = 'http://' . $values['job']['application'];
 					}
 					if ( ! filter_var( $values['job']['application'], FILTER_VALIDATE_URL ) ) {
-						throw new \Exception( __( 'Please enter a valid application URL', 'wp-job-manager' ) );
+						throw new \Exception( __( 'Please enter a valid application URL', 'listings-jobs' ) );
 					}
 				break;
 				default :
@@ -296,7 +296,7 @@ class SubmitJob extends Form {
 							$values['job']['application'] = 'http://' . $values['job']['application'];
 						}
 						if ( ! filter_var( $values['job']['application'], FILTER_VALIDATE_URL ) ) {
-							throw new \Exception( __( 'Please enter a valid application email address or URL', 'wp-job-manager' ) );
+							throw new \Exception( __( 'Please enter a valid application email address or URL', 'listings-jobs' ) );
 						}
 					}
 				break;
@@ -380,7 +380,7 @@ class SubmitJob extends Form {
 			'job_fields'         => $this->get_fields( 'job' ),
 			'company_fields'     => $this->get_fields( 'company' ),
 			'step'               => $this->get_step(),
-			'submit_button_text' => apply_filters( 'submit_job_form_submit_button_text', __( 'Preview', 'wp-job-manager' ) )
+			'submit_button_text' => apply_filters( 'submit_job_form_submit_button_text', __( 'Preview', 'listings-jobs' ) )
 		) );
 	}
 
@@ -411,10 +411,10 @@ class SubmitJob extends Form {
 				if ( listings_enable_registration() ) {
 					if ( listings_user_requires_account() ) {
 						if ( ! listings_generate_username_from_email() && empty( $_POST['create_account_username'] ) ) {
-							throw new \Exception( __( 'Please enter a username.', 'wp-job-manager' ) );
+							throw new \Exception( __( 'Please enter a username.', 'listings-jobs' ) );
 						}
 						if ( empty( $_POST['create_account_email'] ) ) {
-							throw new \Exception( __( 'Please enter your email address.', 'wp-job-manager' ) );
+							throw new \Exception( __( 'Please enter your email address.', 'listings-jobs' ) );
 						}
 					}
 					if ( ! empty( $_POST['create_account_email'] ) ) {

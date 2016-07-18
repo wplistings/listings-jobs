@@ -62,44 +62,44 @@ class Shortcodes {
 
 				// Check ownership
 				if ( ! listings_user_can_edit_listing( $job_id ) ) {
-					throw new \Exception( __( 'Invalid ID', 'wp-job-manager' ) );
+					throw new \Exception( __( 'Invalid ID', 'listings-jobs' ) );
 				}
 
 				switch ( $action ) {
 					case 'mark_filled' :
 						// Check status
 						if ( $job->_filled == 1 )
-							throw new \Exception( __( 'This position has already been filled', 'wp-job-manager' ) );
+							throw new \Exception( __( 'This position has already been filled', 'listings-jobs' ) );
 
 						// Update
 						update_post_meta( $job_id, '_filled', 1 );
 
 						// Message
-						$this->job_dashboard_message = '<div class="job-manager-message">' . sprintf( __( '%s has been filled', 'wp-job-manager' ), $job->post_title ) . '</div>';
+						$this->job_dashboard_message = '<div class="job-manager-message">' . sprintf( __( '%s has been filled', 'listings-jobs' ), $job->post_title ) . '</div>';
 						break;
 					case 'mark_not_filled' :
 						// Check status
 						if ( $job->_filled != 1 ) {
-							throw new \Exception( __( 'This position is not filled', 'wp-job-manager' ) );
+							throw new \Exception( __( 'This position is not filled', 'listings-jobs' ) );
 						}
 
 						// Update
 						update_post_meta( $job_id, '_filled', 0 );
 
 						// Message
-						$this->job_dashboard_message = '<div class="job-manager-message">' . sprintf( __( '%s has been marked as not filled', 'wp-job-manager' ), $job->post_title ) . '</div>';
+						$this->job_dashboard_message = '<div class="job-manager-message">' . sprintf( __( '%s has been marked as not filled', 'listings-jobs' ), $job->post_title ) . '</div>';
 						break;
 					case 'delete' :
 						// Trash it
 						wp_trash_post( $job_id );
 
 						// Message
-						$this->job_dashboard_message = '<div class="job-manager-message">' . sprintf( __( '%s has been deleted', 'wp-job-manager' ), $job->post_title ) . '</div>';
+						$this->job_dashboard_message = '<div class="job-manager-message">' . sprintf( __( '%s has been deleted', 'listings-jobs' ), $job->post_title ) . '</div>';
 
 						break;
 					case 'duplicate' :
 						if ( ! listings_get_permalink( 'submit_job_form' ) ) {
-							throw new \Exception( __( 'Missing submission page.', 'wp-job-manager' ) );
+							throw new \Exception( __( 'Missing submission page.', 'listings-jobs' ) );
 						}
 
 						$new_job_id = listings_jobs_duplicate_listing( $job_id );
@@ -112,7 +112,7 @@ class Shortcodes {
 						break;
 					case 'relist' :
 						if ( ! listings_get_permalink( 'submit_job_form' ) ) {
-							throw new \Exception( __( 'Missing submission page.', 'wp-job-manager' ) );
+							throw new \Exception( __( 'Missing submission page.', 'listings-jobs' ) );
 						}
 
 						// redirect to post page
@@ -180,10 +180,10 @@ class Shortcodes {
 		echo $this->job_dashboard_message;
 
 		$job_dashboard_columns = apply_filters( 'job_manager_job_dashboard_columns', array(
-			'job_title' => __( 'Title', 'wp-job-manager' ),
-			'filled'    => __( 'Filled?', 'wp-job-manager' ),
-			'date'      => __( 'Date Posted', 'wp-job-manager' ),
-			'expires'   => __( 'Listing Expires', 'wp-job-manager' )
+			'job_title' => __( 'Title', 'listings-jobs' ),
+			'filled'    => __( 'Filled?', 'listings-jobs' ),
+			'date'      => __( 'Date Posted', 'listings-jobs' ),
+			'expires'   => __( 'Listing Expires', 'listings-jobs' )
 		) );
 
 		listings_get_template( 'job-dashboard.php', array( 'jobs' => $jobs->query( $args ), 'max_num_pages' => $jobs->max_num_pages, 'job_dashboard_columns' => $job_dashboard_columns ) );
@@ -277,7 +277,7 @@ class Shortcodes {
 			listings_get_template( 'job-listings-end.php' );
 
 			if ( ! $show_pagination && $show_more ) {
-				echo '<a class="load_more_jobs" href="#" style="display:none;"><strong>' . __( 'Load more listings', 'wp-job-manager' ) . '</strong></a>';
+				echo '<a class="load_more_jobs" href="#" style="display:none;"><strong>' . __( 'Load more listings', 'listings-jobs' ) . '</strong></a>';
 			}
 
 		} else {
@@ -311,7 +311,7 @@ class Shortcodes {
 					<?php if ( $show_pagination ) : ?>
 						<?php echo listings_get_listing_pagination( $jobs->max_num_pages ); ?>
 					<?php else : ?>
-						<a class="load_more_jobs" href="#"><strong><?php _e( 'Load more listings', 'wp-job-manager' ); ?></strong></a>
+						<a class="load_more_jobs" href="#"><strong><?php _e( 'Load more listings', 'listings-jobs' ); ?></strong></a>
 					<?php endif; ?>
 
 				<?php endif; ?>

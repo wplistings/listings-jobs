@@ -13,14 +13,14 @@ class FeaturedJobs extends Widget {
         global $wp_post_types;
 
         $this->widget_cssclass    = 'job_manager widget_featured_jobs';
-        $this->widget_description = __( 'Display a list of featured listings on your site.', 'wp-job-manager' );
+        $this->widget_description = __( 'Display a list of featured listings on your site.', 'listings-jobs' );
         $this->widget_id          = 'widget_featured_jobs';
-        $this->widget_name        = sprintf( __( 'Featured %s', 'wp-job-manager' ), $wp_post_types['job_listing']->labels->name );
+        $this->widget_name        = sprintf( __( 'Featured %s', 'listings-jobs' ), $wp_post_types['job_listing']->labels->name );
         $this->settings           = array(
             'title' => array(
                 'type'  => 'text',
-                'std'   => sprintf( __( 'Featured %s', 'wp-job-manager' ), $wp_post_types['job_listing']->labels->name ),
-                'label' => __( 'Title', 'wp-job-manager' )
+                'std'   => sprintf( __( 'Featured %s', 'listings-jobs' ), $wp_post_types['job_listing']->labels->name ),
+                'label' => __( 'Title', 'listings-jobs' )
             ),
             'number' => array(
                 'type'  => 'number',
@@ -28,7 +28,7 @@ class FeaturedJobs extends Widget {
                 'min'   => 1,
                 'max'   => '',
                 'std'   => 10,
-                'label' => __( 'Number of listings to show', 'wp-job-manager' )
+                'label' => __( 'Number of listings to show', 'listings-jobs' )
             )
         );
         $this->register();

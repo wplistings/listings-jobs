@@ -32,69 +32,69 @@ class JobDetails extends Writepanel
 
 		$fields = array(
 			'_job_location' => array(
-				'label' => __( 'Location', 'wp-job-manager' ),
-				'placeholder' => __( 'e.g. "London"', 'wp-job-manager' ),
-				'description' => __( 'Leave this blank if the location is not important.', 'wp-job-manager' ),
+				'label' => __( 'Location', 'listings-jobs' ),
+				'placeholder' => __( 'e.g. "London"', 'listings-jobs' ),
+				'description' => __( 'Leave this blank if the location is not important.', 'listings-jobs' ),
 				'priority'    => 1
 			),
 			'_application' => array(
-				'label'       => __( 'Application Email or URL', 'wp-job-manager' ),
-				'placeholder' => __( 'URL or email which applicants use to apply', 'wp-job-manager' ),
-				'description' => __( 'This field is required for the "application" area to appear beneath the listing.', 'wp-job-manager' ),
+				'label'       => __( 'Application Email or URL', 'listings-jobs' ),
+				'placeholder' => __( 'URL or email which applicants use to apply', 'listings-jobs' ),
+				'description' => __( 'This field is required for the "application" area to appear beneath the listing.', 'listings-jobs' ),
 				'value'       => metadata_exists( 'post', $post->ID, '_application' ) ? get_post_meta( $post->ID, '_application', true ) : $current_user->user_email,
 				'priority'    => 2
 			),
 			'_company_name' => array(
-				'label'       => __( 'Company Name', 'wp-job-manager' ),
+				'label'       => __( 'Company Name', 'listings-jobs' ),
 				'placeholder' => '',
 				'priority'    => 3
 			),
 			'_company_website' => array(
-				'label'       => __( 'Company Website', 'wp-job-manager' ),
+				'label'       => __( 'Company Website', 'listings-jobs' ),
 				'placeholder' => '',
 				'priority'    => 4
 			),
 			'_company_tagline' => array(
-				'label'       => __( 'Company Tagline', 'wp-job-manager' ),
-				'placeholder' => __( 'Brief description about the company', 'wp-job-manager' ),
+				'label'       => __( 'Company Tagline', 'listings-jobs' ),
+				'placeholder' => __( 'Brief description about the company', 'listings-jobs' ),
 				'priority'    => 5
 			),
 			'_company_twitter' => array(
-				'label'       => __( 'Company Twitter', 'wp-job-manager' ),
+				'label'       => __( 'Company Twitter', 'listings-jobs' ),
 				'placeholder' => '@yourcompany',
 				'priority'    => 6
 			),
 			'_company_video' => array(
-				'label'       => __( 'Company Video', 'wp-job-manager' ),
-				'placeholder' => __( 'URL to the company video', 'wp-job-manager' ),
+				'label'       => __( 'Company Video', 'listings-jobs' ),
+				'placeholder' => __( 'URL to the company video', 'listings-jobs' ),
 				'type'        => 'file',
 				'priority'    => 8
 			),
 			'_filled' => array(
-				'label'       => __( 'Position Filled', 'wp-job-manager' ),
+				'label'       => __( 'Position Filled', 'listings-jobs' ),
 				'type'        => 'checkbox',
 				'priority'    => 9,
-				'description' => __( 'Filled listings will no longer accept applications.', 'wp-job-manager' ),
+				'description' => __( 'Filled listings will no longer accept applications.', 'listings-jobs' ),
 			)
 		);
 		if ( $current_user->has_cap( 'manage_job_listings' ) ) {
 			$fields['_featured'] = array(
-				'label'       => __( 'Featured Listing', 'wp-job-manager' ),
+				'label'       => __( 'Featured Listing', 'listings-jobs' ),
 				'type'        => 'checkbox',
-				'description' => __( 'Featured listings will be sticky during searches, and can be styled differently.', 'wp-job-manager' ),
+				'description' => __( 'Featured listings will be sticky during searches, and can be styled differently.', 'listings-jobs' ),
 				'priority'    => 10
 			);
 			$fields['_job_expires'] = array(
-				'label'       => __( 'Listing Expiry Date', 'wp-job-manager' ),
+				'label'       => __( 'Listing Expiry Date', 'listings-jobs' ),
 				'priority'    => 11,
 				'classes'     => array( 'job-manager-datepicker' ),
-				'placeholder' => _x( 'yyyy-mm-dd', 'Date format placeholder', 'wp-job-manager' ),
+				'placeholder' => _x( 'yyyy-mm-dd', 'Date format placeholder', 'listings-jobs' ),
 				'value'       => metadata_exists( 'post', $post->ID, '_job_expires' ) ? get_post_meta( $post->ID, '_job_expires', true ) : listings_jobs_calculate_job_expiry( $post->ID ),
 			);
 		}
 		if ( $current_user->has_cap( 'edit_others_job_listings' ) ) {
 			$fields['_job_author'] = array(
-				'label'    => __( 'Posted by', 'wp-job-manager' ),
+				'label'    => __( 'Posted by', 'listings-jobs' ),
 				'type'     => 'author',
 				'priority' => 12
 			);
@@ -126,7 +126,7 @@ class JobDetails extends Writepanel
 	public function add_meta_boxes() {
 		global $wp_post_types;
 
-		add_meta_box( 'job_listing_data', sprintf( __( '%s Data', 'wp-job-manager' ), $wp_post_types['job_listing']->labels->singular_name ), array( $this, 'job_listing_data' ), 'job_listing', 'normal', 'high' );
+		add_meta_box( 'job_listing_data', sprintf( __( '%s Data', 'listings-jobs' ), $wp_post_types['job_listing']->labels->singular_name ), array( $this, 'job_listing_data' ), 'job_listing', 'normal', 'high' );
 	}
 
 	/**
