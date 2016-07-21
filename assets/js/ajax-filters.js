@@ -118,9 +118,9 @@ jQuery( document ).ready( function ( $ ) {
 						}
 
 						if ( result.showing_all ) {
-							$( showing ).addClass( 'wp-job-manager-showing-all' );
+							$( showing ).addClass( 'listings-jobs-showing-all' );
 						} else {
-							$( showing ).removeClass( 'wp-job-manager-showing-all' );
+							$( showing ).removeClass( 'listings-jobs-showing-all' );
 						}
 
 						if ( result.html ) {
@@ -134,7 +134,7 @@ jQuery( document ).ready( function ( $ ) {
 						}
 
 						if ( true == target.data( 'show_pagination' ) ) {
-							target.find('.job-manager-pagination').remove();
+							target.find('.listings-pagination').remove();
 
 							if ( result.pagination ) {
 								target.append( result.pagination );
@@ -175,7 +175,7 @@ jQuery( document ).ready( function ( $ ) {
 		} );
 	} );
 
-	$( '#search_keywords, #search_location, .job_types :input, #search_categories, .job-manager-filter' ).change( function() {
+	$( '#search_keywords, #search_location, .job_types :input, #search_categories, .listings-jobs-filter' ).change( function() {
 		var target   = $( this ).closest( 'div.job_listings' );
 		target.triggerHandler( 'update_results', [ 1, false ] );
 		listings_store_state( target, 1 );
@@ -191,7 +191,7 @@ jQuery( document ).ready( function ( $ ) {
 		var target = $( this ).closest( 'div.job_listings' );
 		var form = $( this ).closest( 'form' );
 
-		form.find( ':input[name="search_keywords"], :input[name="search_location"], .job-manager-filter' ).not(':input[type="hidden"]').val( '' ).trigger( 'chosen:updated' );
+		form.find( ':input[name="search_keywords"], :input[name="search_location"], .listings-jobs-filter' ).not(':input[type="hidden"]').val( '' ).trigger( 'chosen:updated' );
 		form.find( ':input[name^="search_categories"]' ).not(':input[type="hidden"]').val( 0 ).trigger( 'chosen:updated' );
 		$( ':input[name="filter_job_type[]"]', form ).not(':input[type="hidden"]').attr( 'checked', 'checked' );
 
@@ -227,7 +227,7 @@ jQuery( document ).ready( function ( $ ) {
 		return false;
 	} );
 
-	$( 'div.job_listings' ).on( 'click', '.job-manager-pagination a', function() {
+	$( 'div.job_listings' ).on( 'click', '.listings-pagination a', function() {
 		var target = $( this ).closest( 'div.job_listings' );
 		var page   = $( this ).data( 'page' );
 
