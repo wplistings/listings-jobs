@@ -27,7 +27,7 @@ class Cpt {
 		add_action( 'admin_notices', array( $this, 'approved_notice' ) );
 		add_action( 'admin_notices', array( $this, 'expired_notice' ) );
 
-		if ( get_option( 'job_manager_enable_categories' ) ) {
+		if ( get_option( 'listings_jobs_enable_categories' ) ) {
 			add_action( "restrict_manage_posts", array( $this, "jobs_by_category" ) );
 		}
 
@@ -261,7 +261,7 @@ class Cpt {
 		$columns['filled']               = '<span class="tips" data-tip="' . __( "Filled?", 'listings-jobs' ) . '">' . __( "Filled?", 'listings-jobs' ) . '</span>';
 		$columns['job_actions']          = __( "Actions", 'listings-jobs' );
 
-		if ( ! get_option( 'job_manager_enable_categories' ) ) {
+		if ( ! get_option( 'listings_jobs_enable_categories' ) ) {
 			unset( $columns["job_listing_category"] );
 		}
 
@@ -361,7 +361,7 @@ class Cpt {
 					}
 				}
 
-				$admin_actions = apply_filters( 'job_manager_admin_actions', $admin_actions, $post );
+				$admin_actions = apply_filters( 'listings_jobs_admin_actions', $admin_actions, $post );
 
 				foreach ( $admin_actions as $action ) {
 					if ( is_array( $action ) ) {

@@ -61,11 +61,11 @@ class SubmitJob extends Form {
 		$this->job_id = ! empty( $_REQUEST['job_id'] ) ? absint( $_REQUEST[ 'job_id' ] ) : 0;
 
 		// Allow resuming from cookie.
-		if ( ! $this->job_id && ! empty( $_COOKIE['wp-job-manager-submitting-job-id'] ) && ! empty( $_COOKIE['wp-job-manager-submitting-job-key'] ) ) {
-			$job_id     = absint( $_COOKIE['wp-job-manager-submitting-job-id'] );
+		if ( ! $this->job_id && ! empty( $_COOKIE['listings-jobs-submitting-job-id'] ) && ! empty( $_COOKIE['listings-jobs-submitting-job-key'] ) ) {
+			$job_id     = absint( $_COOKIE['listings-jobs-submitting-job-id'] );
 			$job_status = get_post_status( $job_id );
 
-			if ( 'preview' === $job_status && get_post_meta( $job_id, '_submitting_key', true ) === $_COOKIE['wp-job-manager-submitting-job-key'] ) {
+			if ( 'preview' === $job_status && get_post_meta( $job_id, '_submitting_key', true ) === $_COOKIE['listings-jobs-submitting-job-key'] ) {
 				$this->job_id = $job_id;
 			}
 		}
@@ -78,7 +78,7 @@ class SubmitJob extends Form {
 					$this->job_id = 0;
 					$this->step   = 0;
 				}
-			} elseif ( ! in_array( $job_status, apply_filters( 'job_manager_valid_submit_job_statuses', array( 'preview' ) ) ) ) {
+			} elseif ( ! in_array( $job_status, apply_filters( 'listings_jobs_valid_submit_job_statuses', array( 'preview' ) ) ) ) {
 				$this->job_id = 0;
 				$this->step   = 0;
 			}
@@ -101,7 +101,7 @@ class SubmitJob extends Form {
 			return;
 		}
 
-		$allowed_application_method = get_option( 'job_manager_allowed_application_method', '' );
+		$allowed_application_method = get_option( 'listings_jobs_allowed_application_method', '' );
 		switch ( $allowed_application_method ) {
 			case 'email' :
 				$application_method_label       = __( 'Application email', 'listings-jobs' );
@@ -222,7 +222,7 @@ class SubmitJob extends Form {
 			)
 		) );
 
-		if ( ! get_option( 'job_manager_enable_categories' ) || wp_count_terms( 'job_listing_category' ) == 0 ) {
+		if ( ! get_option( 'listings_jobs_enable_categories' ) || wp_count_terms( 'job_listing_category' ) == 0 ) {
 			unset( $this->fields['job']['job_category'] );
 		}
 	}
@@ -272,7 +272,7 @@ class SubmitJob extends Form {
 
 		// Application method
 		if ( isset( $values['job']['application'] ) && ! empty( $values['job']['application'] ) ) {
-			$allowed_application_method = get_option( 'job_manager_allowed_application_method', '' );
+			$allowed_application_method = get_option( 'listings_jobs_allowed_application_method', '' );
 			$values['job']['application'] = str_replace( ' ', '+', $values['job']['application'] );
 			switch ( $allowed_application_method ) {
 				case 'email' :
@@ -362,7 +362,7 @@ class SubmitJob extends Form {
 				}
 			}
 			if ( ! empty( $this->fields['job']['application'] ) ) {
-				$allowed_application_method = get_option( 'job_manager_allowed_application_method', '' );
+				$allowed_application_method = get_option( 'listings_jobs_allowed_application_method', '' );
 				if ( $allowed_application_method !== 'url' ) {
 					$current_user = wp_get_current_user();
 					$this->fields['job']['application']['value'] = $current_user->user_email;
@@ -371,7 +371,7 @@ class SubmitJob extends Form {
 			$this->fields = apply_filters( 'submit_job_form_fields_get_user_data', $this->fields, get_current_user_id() );
 		}
 
-		wp_enqueue_script( 'wp-job-manager-job-submission' );
+		wp_enqueue_script( 'listings-jobs-job-submission' );
 
 		listings_get_template( 'job-submit.php', array(
 			'form'               => $this->form_name,
@@ -421,7 +421,7 @@ class SubmitJob extends Form {
 						$create_account = listings_create_account( array(
 							'username' => empty( $_POST['create_account_username'] ) ? '' : $_POST['create_account_username'],
 							'email'    => $_POST['create_account_email'],
-							'role'     => get_option( 'job_manager_registration_role' )
+							'role'     => get_option( 'listings_jobs_registration_role' )
 						) );
 					}
 				}
@@ -502,8 +502,8 @@ class SubmitJob extends Form {
 			if ( ! headers_sent() ) {
 				$submitting_key = uniqid();
 
-				setcookie( 'wp-job-manager-submitting-job-id', $this->job_id, false, COOKIEPATH, COOKIE_DOMAIN, false );
-				setcookie( 'wp-job-manager-submitting-job-key', $submitting_key, false, COOKIEPATH, COOKIE_DOMAIN, false );
+				setcookie( 'listings-jobs-submitting-job-id', $this->job_id, false, COOKIEPATH, COOKIE_DOMAIN, false );
+				setcookie( 'listings-jobssubmitting-job-key', $submitting_key, false, COOKIEPATH, COOKIE_DOMAIN, false );
 
 				update_post_meta( $this->job_id, '_submitting_key', $submitting_key );
 			}
@@ -598,7 +598,7 @@ class SubmitJob extends Form {
 		$maybe_attach = array_filter( $maybe_attach );
 
 		// Handle attachments
-		if ( sizeof( $maybe_attach ) && apply_filters( 'job_manager_attach_uploaded_files', true ) ) {
+		if ( sizeof( $maybe_attach ) && apply_filters( 'listings_jobs_attach_uploaded_files', true ) ) {
 			// Get attachments
 			$attachments     = get_posts( 'post_parent=' . $this->job_id . '&post_type=attachment&fields=ids&post_mime_type=image&numberposts=-1' );
 			$attachment_urls = array();
@@ -624,7 +624,7 @@ class SubmitJob extends Form {
 			update_user_meta( get_current_user_id(), '_company_video', isset( $values['company']['company_video'] ) ? $values['company']['company_video'] : '' );
 		}
 
-		do_action( 'job_manager_update_job_data', $this->job_id, $values );
+		do_action( 'listings_jobs_update_job_data', $this->job_id, $values );
 	}
 
 	/**
@@ -672,7 +672,7 @@ class SubmitJob extends Form {
 				// Update job listing
 				$update_job                  = array();
 				$update_job['ID']            = $job->ID;
-				$update_job['post_status']   = apply_filters( 'submit_job_post_status', get_option( 'job_manager_submission_requires_approval' ) ? 'pending' : 'publish', $job );
+				$update_job['post_status']   = apply_filters( 'submit_job_post_status', get_option( 'listings_jobs_submission_requires_approval' ) ? 'pending' : 'publish', $job );
 				$update_job['post_date']     = current_time( 'mysql' );
 				$update_job['post_date_gmt'] = current_time( 'mysql', 1 );
 				$update_job['post_author']   = get_current_user_id();
@@ -688,7 +688,7 @@ class SubmitJob extends Form {
 	 * Done Step
 	 */
 	public function done() {
-		do_action( 'job_manager_job_submitted', $this->job_id );
+		do_action( 'listings_jobs_job_submitted', $this->job_id );
 		listings_get_template( 'job-submitted.php', array( 'job' => get_post( $this->job_id ) ) );
 	}
 }

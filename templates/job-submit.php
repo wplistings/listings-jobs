@@ -4,9 +4,9 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-global $job_manager;
+global $listings;
 ?>
-<form action="<?php echo esc_url( $action ); ?>" method="post" id="submit-job-form" class="job-manager-form" enctype="multipart/form-data">
+<form action="<?php echo esc_url( $action ); ?>" method="post" id="submit-job-form" class="listings-form" enctype="multipart/form-data">
 
 	<?php do_action( 'submit_job_form_start' ); ?>
 
@@ -53,7 +53,7 @@ global $job_manager;
 		<?php do_action( 'submit_job_form_end' ); ?>
 
 		<p>
-			<input type="hidden" name="job_manager_form" value="<?php echo $form; ?>" />
+			<input type="hidden" name="listings_form" value="<?php echo $form; ?>" />
 			<input type="hidden" name="job_id" value="<?php echo esc_attr( $job_id ); ?>" />
 			<input type="hidden" name="step" value="<?php echo esc_attr( $step ); ?>" />
 			<input type="submit" name="submit_job" class="button" value="<?php esc_attr_e( $submit_button_text ); ?>" />

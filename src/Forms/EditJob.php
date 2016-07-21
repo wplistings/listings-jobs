@@ -83,7 +83,7 @@ class EditJob extends SubmitJob {
 
 		$this->fields = apply_filters( 'submit_job_form_fields_get_job_data', $this->fields, $job );
 
-		wp_enqueue_script( 'wp-job-manager-job-submission' );
+		wp_enqueue_script( 'listings-jobs-job-submission' );
 
 		listings_get_template( 'job-submit.php', array(
 			'form'               => $this->form_name,
@@ -121,15 +121,15 @@ class EditJob extends SubmitJob {
 			// Successful
 			switch ( get_post_status( $this->job_id ) ) {
 				case 'publish' :
-					echo '<div class="job-manager-message">' . __( 'Your changes have been saved.', 'listings-jobs' ) . ' <a href="' . get_permalink( $this->job_id ) . '">' . __( 'View &rarr;', 'listings-jobs' ) . '</a>' . '</div>';
+					echo '<div class="listings-message">' . __( 'Your changes have been saved.', 'listings-jobs' ) . ' <a href="' . get_permalink( $this->job_id ) . '">' . __( 'View &rarr;', 'listings-jobs' ) . '</a>' . '</div>';
 				break;
 				default :
-					echo '<div class="job-manager-message">' . __( 'Your changes have been saved.', 'listings-jobs' ) . '</div>';
+					echo '<div class="listings-message">' . __( 'Your changes have been saved.', 'listings-jobs' ) . '</div>';
 				break;
 			}
 
 		} catch ( \Exception $e ) {
-			echo '<div class="job-manager-error">' . $e->getMessage() . '</div>';
+			echo '<div class="listings-error">' . $e->getMessage() . '</div>';
 			return;
 		}
 	}

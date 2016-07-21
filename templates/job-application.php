@@ -1,19 +1,19 @@
 <?php if ( $apply = listings_jobs_get_application_method() ) :
-	wp_enqueue_script( 'wp-job-manager-job-application' );
+	wp_enqueue_script( 'listings-jobs-application' );
 	?>
 	<div class="job_application application">
-		<?php do_action( 'job_application_start', $apply ); ?>
+		<?php do_action( 'listings_jobs_application_start', $apply ); ?>
 		
 		<input type="button" class="application_button button" value="<?php _e( 'Apply for job', 'listings-jobs' ); ?>" />
 		
 		<div class="application_details">
 			<?php
 				/**
-				 * job_manager_application_details_email or job_manager_application_details_url hook
+				 * listings_jobs_application_details_email or listings_jobs_application_details_url hook
 				 */
-				do_action( 'job_manager_application_details_' . $apply->type, $apply );
+				do_action( 'listings_jobs_application_details_' . $apply->type, $apply );
 			?>
 		</div>
-		<?php do_action( 'job_application_end', $apply ); ?>
+		<?php do_action( 'listings_jobs_application_end', $apply ); ?>
 	</div>
 <?php endif; ?>

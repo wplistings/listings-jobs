@@ -16,7 +16,7 @@ class JobDetails extends Metabox
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save_post' ), 1, 2 );
-		add_action( 'job_manager_save_job_listing', array( $this, 'save_job_listing_data' ), 20, 2 );
+		add_action( 'listings_jobs_save_job_listing', array( $this, 'save_job_listing_data' ), 20, 2 );
 	}
 
 	/**
@@ -100,7 +100,7 @@ class JobDetails extends Metabox
 			);
 		}
 
-		$fields = apply_filters( 'job_manager_job_listing_data_fields', $fields );
+		$fields = apply_filters( 'listings_jobs_job_listing_data_fields', $fields );
 
 		uasort( $fields, array( $this, 'sort_by_priority' ) );
 
@@ -143,21 +143,21 @@ class JobDetails extends Metabox
 
 		echo '<div class="wp_job_manager_meta_data">';
 
-		wp_nonce_field( 'save_meta_data', 'job_manager_nonce' );
+		wp_nonce_field( 'save_meta_data', 'listings_jobs_nonce' );
 
-		do_action( 'job_manager_job_listing_data_start', $thepostid );
+		do_action( 'listings_jobs_job_listing_data_start', $thepostid );
 
 		foreach ( $this->job_listing_fields() as $key => $field ) {
 			$type = ! empty( $field['type'] ) ? $field['type'] : 'text';
 
-			if ( has_action( 'job_manager_input_' . $type ) ) {
-				do_action( 'job_manager_input_' . $type, $key, $field );
+			if ( has_action( 'listings_input_' . $type ) ) {
+				do_action( 'listings_input_' . $type, $key, $field );
 			} elseif ( method_exists( $this, 'input_' . $type ) ) {
 				call_user_func( array( $this, 'input_' . $type ), $key, $field );
 			}
 		}
 
-		do_action( 'job_manager_job_listing_data_end', $thepostid );
+		do_action( 'listings_jobs_job_listing_data_end', $thepostid );
 
 		echo '</div>';
 	}
@@ -175,11 +175,11 @@ class JobDetails extends Metabox
 		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return;
 		if ( is_int( wp_is_post_revision( $post ) ) ) return;
 		if ( is_int( wp_is_post_autosave( $post ) ) ) return;
-		if ( empty($_POST['job_manager_nonce']) || ! wp_verify_nonce( $_POST['job_manager_nonce'], 'save_meta_data' ) ) return;
+		if ( empty($_POST['listings_jobs_nonce']) || ! wp_verify_nonce( $_POST['listings_jobs_nonce'], 'save_meta_data' ) ) return;
 		if ( ! current_user_can( 'edit_post', $post_id ) ) return;
 		if ( $post->post_type != 'job_listing' ) return;
 
-		do_action( 'job_manager_save_job_listing', $post_id, $post );
+		do_action( 'listings_job_save_job_listing', $post_id, $post );
 	}
 
 	/**
@@ -212,7 +212,7 @@ class JobDetails extends Metabox
 			elseif ( '_job_location' === $key ) {
 				if ( update_post_meta( $post_id, $key, sanitize_text_field( $_POST[ $key ] ) ) ) {
 					// Location data will be updated by hooked in methods
-				} elseif ( apply_filters( 'job_manager_geolocation_enabled', true ) && ! Geocode::has_location_data( $post_id ) ) {
+				} elseif ( apply_filters( 'listings_jobs_geolocation_enabled', true ) && ! Geocode::has_location_data( $post_id ) ) {
 					Geocode::generate_location_data( $post_id, sanitize_text_field( $_POST[ $key ] ) );
 				}
 			}
