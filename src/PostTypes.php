@@ -69,7 +69,7 @@ class PostTypes {
 			$singular  = __( 'Job category', 'listings-jobs' );
 			$plural    = __( 'Job categories', 'listings-jobs' );
 
-			if ( current_theme_supports( 'job-manager-templates' ) ) {
+			if ( current_theme_supports( 'listings-jobs-templates' ) ) {
 				$rewrite   = array(
 					'slug'         => _x( 'job-category', 'Job category slug - resave permalinks after changing this', 'listings-jobs' ),
 					'with_front'   => false,
@@ -116,7 +116,7 @@ class PostTypes {
 	    $singular  = __( 'Job type', 'listings-jobs' );
 		$plural    = __( 'Job types', 'listings-jobs' );
 
-		if ( current_theme_supports( 'job-manager-templates' ) ) {
+		if ( current_theme_supports( 'listings-jobs-templates' ) ) {
 			$rewrite   = array(
 				'slug'         => _x( 'job-type', 'Job type slug - resave permalinks after changing this', 'listings-jobs' ),
 				'with_front'   => false,
@@ -164,7 +164,7 @@ class PostTypes {
 		$singular  = __( 'Job', 'listings-jobs' );
 		$plural    = __( 'Jobs', 'listings-jobs' );
 
-		if ( current_theme_supports( 'job-manager-templates' ) ) {
+		if ( current_theme_supports( 'listings-jobs-templates' ) ) {
 			$has_archive = _x( 'jobs', 'Post type archive slug - resave permalinks after changing this', 'listings-jobs' );
 		} else {
 			$has_archive = false;

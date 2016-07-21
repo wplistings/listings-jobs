@@ -87,7 +87,7 @@ class JobDetails extends Metabox
 			$fields['_job_expires'] = array(
 				'label'       => __( 'Listing Expiry Date', 'listings-jobs' ),
 				'priority'    => 11,
-				'classes'     => array( 'job-manager-datepicker' ),
+				'classes'     => array( 'listings-jobs-datepicker' ),
 				'placeholder' => _x( 'yyyy-mm-dd', 'Date format placeholder', 'listings-jobs' ),
 				'value'       => metadata_exists( 'post', $post->ID, '_job_expires' ) ? get_post_meta( $post->ID, '_job_expires', true ) : listings_jobs_calculate_job_expiry( $post->ID ),
 			);
@@ -141,7 +141,7 @@ class JobDetails extends Metabox
 
 		$thepostid = $post->ID;
 
-		echo '<div class="wp_job_manager_meta_data">';
+		echo '<div class="listings_jobs_meta_data">';
 
 		wp_nonce_field( 'save_meta_data', 'listings_jobs_nonce' );
 

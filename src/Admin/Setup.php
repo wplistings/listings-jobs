@@ -112,13 +112,13 @@ class Setup {
 			}
 		}
 		?>
-		<div class="wrap wp_job_manager wp_job_manager_addons_wrap">
+		<div class="wrap listings_jobs listings_jobs_addons_wrap">
 			<h2><?php _e( 'Listings Jobs Setup', 'listings-jobs' ); ?></h2>
 
-			<ul class="wp-job-manager-setup-steps">
-				<li class="<?php if ( $step === 1 ) echo 'wp-job-manager-setup-active-step'; ?>"><?php _e( '1. Introduction', 'listings-jobs' ); ?></li>
-				<li class="<?php if ( $step === 2 ) echo 'wp-job-manager-setup-active-step'; ?>"><?php _e( '2. Page Setup', 'listings-jobs' ); ?></li>
-				<li class="<?php if ( $step === 3 ) echo 'wp-job-manager-setup-active-step'; ?>"><?php _e( '3. Done', 'listings-jobs' ); ?></li>
+			<ul class="listings-jobs-setup-steps">
+				<li class="<?php if ( $step === 1 ) echo 'listings-jobs-setup-active-step'; ?>"><?php _e( '1. Introduction', 'listings-jobs' ); ?></li>
+				<li class="<?php if ( $step === 2 ) echo 'listings-jobs-setup-active-step'; ?>"><?php _e( '2. Page Setup', 'listings-jobs' ); ?></li>
+				<li class="<?php if ( $step === 3 ) echo 'listings-jobs-setup-active-step'; ?>"><?php _e( '3. Done', 'listings-jobs' ); ?></li>
 			</ul>
 
 			<?php if ( 1 === $step ) : ?>
@@ -142,7 +142,7 @@ class Setup {
 				<p><?php printf( __( '<em>Listings Jobs</em> includes %1$sshortcodes%2$s which can be used within your %3$spages%2$s to output content. These can be created for you below. For more information on the job shortcodes view the %4$sshortcode documentation%2$s.', 'listings-jobs' ), '<a href="http://codex.wordpress.org/Shortcode" title="What is a shortcode?" target="_blank" class="help-page-link">', '</a>', '<a href="http://codex.wordpress.org/Pages" target="_blank" class="help-page-link">', '<a href="https://wpjobmanager.com/document/shortcode-reference/" target="_blank" class="help-page-link">' ); ?></p>
 
 				<form action="<?php echo esc_url( add_query_arg( 'step', 3 ) ); ?>" method="post">
-					<table class="wp-job-manager-shortcodes widefat">
+					<table class="listings-jobs-shortcodes widefat">
 						<thead>
 							<tr>
 								<th>&nbsp;</th>
@@ -153,8 +153,8 @@ class Setup {
 						</thead>
 						<tbody>
 							<tr>
-								<td><input type="checkbox" checked="checked" name="wp-job-manager-create-page[submit_job_form]" /></td>
-								<td><input type="text" value="<?php echo esc_attr( _x( 'Post a Job', 'Default page title (wizard)', 'listings-jobs' ) ); ?>" name="wp-job-manager-page-title[submit_job_form]" /></td>
+								<td><input type="checkbox" checked="checked" name="listings-jobs-create-page[submit_job_form]" /></td>
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Post a Job', 'Default page title (wizard)', 'listings-jobs' ) ); ?>" name="listings-jobs-page-title[submit_job_form]" /></td>
 								<td>
 									<p><?php _e( 'This page allows employers to post jobs to your website from the front-end.', 'listings-jobs' ); ?></p>
 
@@ -163,8 +163,8 @@ class Setup {
 								<td><code>[submit_job_form]</code></td>
 							</tr>
 							<tr>
-								<td><input type="checkbox" checked="checked" name="wp-job-manager-create-page[job_dashboard]" /></td>
-								<td><input type="text" value="<?php echo esc_attr( _x( 'Job Dashboard', 'Default page title (wizard)', 'listings-jobs' ) ); ?>" name="wp-job-manager-page-title[job_dashboard]" /></td>
+								<td><input type="checkbox" checked="checked" name="listings-jobs-create-page[job_dashboard]" /></td>
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Job Dashboard', 'Default page title (wizard)', 'listings-jobs' ) ); ?>" name="listings-jobs-page-title[job_dashboard]" /></td>
 								<td>
 									<p><?php _e( 'This page allows employers to manage and edit their own jobs from the front-end.', 'listings-jobs' ); ?></p>
 
@@ -173,8 +173,8 @@ class Setup {
 								<td><code>[job_dashboard]</code></td>
 							</tr>
 							<tr>
-								<td><input type="checkbox" checked="checked" name="wp-job-manager-create-page[jobs]" /></td>
-								<td><input type="text" value="<?php echo esc_attr( _x( 'Jobs', 'Default page title (wizard)', 'listings-jobs' ) ); ?>" name="wp-job-manager-page-title[jobs]" /></td>
+								<td><input type="checkbox" checked="checked" name="listings-jobs-create-page[jobs]" /></td>
+								<td><input type="text" value="<?php echo esc_attr( _x( 'Jobs', 'Default page title (wizard)', 'listings-jobs' ) ); ?>" name="listings-jobs-page-title[jobs]" /></td>
 								<td><?php _e( 'This page allows users to browse, search, and filter job listings on the front-end of your site.', 'listings-jobs' ); ?></td>
 								<td><code>[jobs]</code></td>
 							</tr>
@@ -197,7 +197,7 @@ class Setup {
 
 				<p><?php _e( 'Looks like you\'re all set to start using the plugin. In case you\'re wondering where to go next:', 'listings-jobs' ); ?></p>
 
-				<ul class="wp-job-manager-next-steps">
+				<ul class="listings-jobs-next-steps">
 					<li><a href="<?php echo admin_url( 'admin.php?page=listings-settings' ); ?>"><?php _e( 'Tweak the plugin settings', 'listings-jobs' ); ?></a></li>
 					<li><a href="<?php echo admin_url( 'post-new.php?post_type=listing' ); ?>"><?php _e( 'Add a job via the back-end', 'listings-jobs' ); ?></a></li>
 
@@ -222,7 +222,7 @@ class Setup {
 
 				<p><?php printf( __( 'And don\'t forget, if you need any more help using <em>Listings</em> you can consult the %1$sdocumentation%2$s or %3$spost on the forums%2$s!', 'listings-jobs' ), '<a href="https://wpjobmanager.com/documentation/">', '</a>', '<a href="https://wordpress.org/support/plugin/wp-job-manager">' ); ?></p>
 
-				<div class="wp-job-manager-support-the-plugin">
+				<div class="listings-jobs-support-the-plugin">
 					<h3><?php _e( 'Support the Ongoing Development of this Plugin', 'listings-jobs' ); ?></h3>
 					<p><?php _e( 'There are many ways to support open-source projects such as Listings, for example code contribution, translation, or even telling your friends how awesome the plugin (hopefully) is. Thanks in advance for your support - it is much appreciated!', 'listings-jobs' ); ?></p>
 					<ul>

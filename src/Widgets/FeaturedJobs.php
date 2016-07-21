@@ -12,7 +12,7 @@ class FeaturedJobs extends Widget {
     public function __construct() {
         global $wp_post_types;
 
-        $this->widget_cssclass    = 'job_manager widget_featured_jobs';
+        $this->widget_cssclass    = 'listings_jobs widget_featured_jobs';
         $this->widget_description = __( 'Display a list of featured listings on your site.', 'listings-jobs' );
         $this->widget_id          = 'widget_featured_jobs';
         $this->widget_name        = sprintf( __( 'Featured %s', 'listings-jobs' ), $wp_post_types['job_listing']->labels->name );
