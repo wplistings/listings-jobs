@@ -2,8 +2,8 @@
 <div class="single_job_listing" itemscope itemtype="http://schema.org/JobPosting">
 	<meta itemprop="title" content="<?php echo esc_attr( $post->post_title ); ?>" />
 
-	<?php if ( get_option( 'job_manager_hide_expired_content', 1 ) && 'expired' === $post->post_status ) : ?>
-		<div class="job-manager-info"><?php _e( 'This listing has expired.', 'listings-jobs' ); ?></div>
+	<?php if ( get_option( 'listings_jobs_hide_expired_content', 1 ) && 'expired' === $post->post_status ) : ?>
+		<div class="listings-info"><?php _e( 'This listing has expired.', 'listings-jobs' ); ?></div>
 	<?php else : ?>
 		<?php
 			/**

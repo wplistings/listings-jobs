@@ -1,4 +1,4 @@
-<?php global $job_manager; ?>
+<?php global $listings; ?>
 
 <a href="<?php the_permalink(); ?>">
 	<div class="job-type <?php echo listings_jobs_the_job_type() ? sanitize_title( listings_jobs_the_job_type()->slug ) : ''; ?>"><?php listings_jobs_the_job_type(); ?></div>

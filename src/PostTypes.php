@@ -10,8 +10,8 @@ class PostTypes {
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_post_types' ), 0 );
 		add_filter( 'admin_head', array( $this, 'admin_head' ) );
-		add_action( 'job_manager_check_for_expired_jobs', array( $this, 'check_for_expired_jobs' ) );
-		add_action( 'job_manager_delete_old_previews', array( $this, 'delete_old_previews' ) );
+		add_action( 'listings_jobs_check_for_expired_jobs', array( $this, 'check_for_expired_jobs' ) );
+		add_action( 'listings_jobs_delete_old_previews', array( $this, 'delete_old_previews' ) );
 
 		add_action( 'pending_to_publish', array( $this, 'set_expiry' ) );
 		add_action( 'preview_to_publish', array( $this, 'set_expiry' ) );
@@ -30,8 +30,8 @@ class PostTypes {
 			add_filter( 'the_job_description', array( $GLOBALS['wp_embed'], 'autoembed' ), 8 );
 		}
 
-		add_action( 'job_manager_application_details_email', array( $this, 'application_details_email' ) );
-		add_action( 'job_manager_application_details_url', array( $this, 'application_details_url' ) );
+		add_action( 'listings_jobs_application_details_email', array( $this, 'application_details_email' ) );
+		add_action( 'listings_jobs_application_details_url', array( $this, 'application_details_url' ) );
 
 		add_filter( 'wp_insert_post_data', array( $this, 'fix_post_name' ), 10, 2 );
 		add_action( 'add_post_meta', array( $this, 'maybe_add_geolocation_data' ), 10, 3 );
@@ -65,11 +65,11 @@ class PostTypes {
 		/**
 		 * Taxonomies
 		 */
-		if ( get_option( 'job_manager_enable_categories' ) ) {
+		if ( get_option( 'listings_jobs_enable_categories' ) ) {
 			$singular  = __( 'Job category', 'listings-jobs' );
 			$plural    = __( 'Job categories', 'listings-jobs' );
 
-			if ( current_theme_supports( 'job-manager-templates' ) ) {
+			if ( current_theme_supports( 'listings-jobs-templates' ) ) {
 				$rewrite   = array(
 					'slug'         => _x( 'job-category', 'Job category slug - resave permalinks after changing this', 'listings-jobs' ),
 					'with_front'   => false,
@@ -116,7 +116,7 @@ class PostTypes {
 	    $singular  = __( 'Job type', 'listings-jobs' );
 		$plural    = __( 'Job types', 'listings-jobs' );
 
-		if ( current_theme_supports( 'job-manager-templates' ) ) {
+		if ( current_theme_supports( 'listings-jobs-templates' ) ) {
 			$rewrite   = array(
 				'slug'         => _x( 'job-type', 'Job type slug - resave permalinks after changing this', 'listings-jobs' ),
 				'with_front'   => false,
@@ -164,7 +164,7 @@ class PostTypes {
 		$singular  = __( 'Job', 'listings-jobs' );
 		$plural    = __( 'Jobs', 'listings-jobs' );
 
-		if ( current_theme_supports( 'job-manager-templates' ) ) {
+		if ( current_theme_supports( 'listings-jobs-templates' ) ) {
 			$has_archive = _x( 'jobs', 'Post type archive slug - resave permalinks after changing this', 'listings-jobs' );
 		} else {
 			$has_archive = false;
@@ -297,7 +297,7 @@ class PostTypes {
 
 		$this->job_content_filter( true );
 
-		return apply_filters( 'job_manager_single_job_content', ob_get_clean(), $post );
+		return apply_filters( 'listings_jobs_single_job_content', ob_get_clean(), $post );
 	}
 
 	/**
@@ -337,7 +337,7 @@ class PostTypes {
 		if ( ! empty( $_GET['job_categories'] ) ) {
 			$cats     = explode( ',', sanitize_text_field( $_GET['job_categories'] ) ) + array( 0 );
 			$field    = is_numeric( $cats ) ? 'term_id' : 'slug';
-			$operator = 'all' === get_option( 'job_manager_category_filter_type', 'all' ) && sizeof( $args['search_categories'] ) > 1 ? 'AND' : 'IN';
+			$operator = 'all' === get_option( 'listings_jobs_category_filter_type', 'all' ) && sizeof( $args['search_categories'] ) > 1 ? 'AND' : 'IN';
 			$query_args['tax_query'][] = array(
 				'taxonomy'         => 'job_listing_category',
 				'field'            => $field,
@@ -420,13 +420,13 @@ class PostTypes {
 		}
 
 		// Delete old expired jobs
-		if ( apply_filters( 'job_manager_delete_expired_jobs', false ) ) {
+		if ( apply_filters( 'listings_jobs_delete_expired_jobs', false ) ) {
 			$job_ids = $wpdb->get_col( $wpdb->prepare( "
 				SELECT posts.ID FROM {$wpdb->posts} as posts
 				WHERE posts.post_type = 'job_listing'
 				AND posts.post_modified < %s
 				AND posts.post_status = 'expired'
-			", date( 'Y-m-d', strtotime( '-' . apply_filters( 'job_manager_delete_expired_jobs_days', 30 ) . ' days', current_time( 'timestamp' ) ) ) ) );
+			", date( 'Y-m-d', strtotime( '-' . apply_filters( 'listings_jobs_delete_expired_jobs_days', 30 ) . ' days', current_time( 'timestamp' ) ) ) ) );
 
 			if ( $job_ids ) {
 				foreach ( $job_ids as $job_id ) {
@@ -534,7 +534,7 @@ class PostTypes {
 		if ( '_job_location' !== $meta_key || 'job_listing' !== get_post_type( $object_id ) ) {
 			return;
 		}
-		do_action( 'job_manager_job_location_edited', $object_id, $meta_value );
+		do_action( 'listings_jobs_job_location_edited', $object_id, $meta_value );
 	}
 
 	/**
@@ -557,7 +557,7 @@ class PostTypes {
 	 * Generate location data if a post is updated
 	 */
 	public function maybe_update_geolocation_data( $meta_id, $object_id, $meta_key, $meta_value ) {
-		do_action( 'job_manager_job_location_edited', $object_id, $meta_value );
+		do_action( 'listings_jobs_job_location_edited', $object_id, $meta_value );
 	}
 
 	/**
@@ -609,7 +609,7 @@ class PostTypes {
 	}
 
 	/**
-	 * Replace RP4WP template with the template from Job Manager
+	 * Replace RP4WP template with the template from Listings
 	 * @param  string $located
 	 * @param  string $template_name
 	 * @param  array $args

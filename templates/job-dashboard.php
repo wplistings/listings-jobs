@@ -1,6 +1,6 @@
-<div id="job-manager-job-dashboard">
+<div id="listings-jobs-job-dashboard">
 	<p><?php _e( 'Your listings are shown in the table below.', 'listings-jobs' ); ?></p>
-	<table class="job-manager-jobs">
+	<table class="listings-jobs-jobs">
 		<thead>
 			<tr>
 				<?php foreach ( $job_dashboard_columns as $key => $column ) : ?>
@@ -54,12 +54,12 @@
 											}
 
 											$actions['delete'] = array( 'label' => __( 'Delete', 'listings-jobs' ), 'nonce' => true );
-											$actions           = apply_filters( 'job_manager_my_job_actions', $actions, $job );
+											$actions           = apply_filters( 'listings_jobs_my_job_actions', $actions, $job );
 
 											foreach ( $actions as $action => $value ) {
 												$action_url = add_query_arg( array( 'action' => $action, 'job_id' => $job->ID ) );
 												if ( $value['nonce'] ) {
-													$action_url = wp_nonce_url( $action_url, 'job_manager_my_job_actions' );
+													$action_url = wp_nonce_url( $action_url, 'listings_jobs_my_job_actions' );
 												}
 												echo '<li><a href="' . esc_url( $action_url ) . '" class="job-dashboard-action-' . esc_attr( $action ) . '">' . esc_html( $value['label'] ) . '</a></li>';
 											}
@@ -72,7 +72,7 @@
 								<?php elseif ('filled' === $key ) : ?>
 									<?php echo listings_jobs_is_position_filled( $job ) ? '&#10004;' : '&ndash;'; ?>
 								<?php else : ?>
-									<?php do_action( 'job_manager_job_dashboard_column_' . $key, $job ); ?>
+									<?php do_action( 'listings_jobs_job_dashboard_column_' . $key, $job ); ?>
 								<?php endif; ?>
 							</td>
 						<?php endforeach; ?>

@@ -14,10 +14,10 @@ class Shortcodes {
 	 */
 	public function __construct() {
 		add_action( 'wp', array( $this, 'shortcode_action_handler' ) );
-		add_action( 'job_manager_job_dashboard_content_edit', array( $this, 'edit_job' ) );
-		add_action( 'job_manager_job_filters_end', array( $this, 'job_filter_job_types' ), 20 );
-		add_action( 'job_manager_job_filters_end', array( $this, 'job_filter_results' ), 30 );
-		add_action( 'job_manager_output_jobs_no_results', array( $this, 'output_no_results' ) );
+		add_action( 'listings_jobs_job_dashboard_content_edit', array( $this, 'edit_job' ) );
+		add_action( 'listings_jobs_job_filters_end', array( $this, 'job_filter_job_types' ), 20 );
+		add_action( 'listings_jobs_job_filters_end', array( $this, 'job_filter_results' ), 30 );
+		add_action( 'listings_jobs_output_jobs_no_results', array( $this, 'output_no_results' ) );
 		add_shortcode( 'submit_job_form', array( $this, 'submit_job_form' ) );
 		add_shortcode( 'job_dashboard', array( $this, 'job_dashboard' ) );
 		add_shortcode( 'jobs', array( $this, 'output_jobs' ) );
@@ -51,7 +51,7 @@ class Shortcodes {
 	 * Handles actions on job dashboard
 	 */
 	public function job_dashboard_handler() {
-		if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'job_manager_my_job_actions' ) ) {
+		if ( ! empty( $_REQUEST['action'] ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'listings_jobs_my_job_actions' ) ) {
 
 			$action = sanitize_title( $_REQUEST['action'] );
 			$job_id = absint( $_REQUEST['job_id'] );
@@ -75,7 +75,7 @@ class Shortcodes {
 						update_post_meta( $job_id, '_filled', 1 );
 
 						// Message
-						$this->job_dashboard_message = '<div class="job-manager-message">' . sprintf( __( '%s has been filled', 'listings-jobs' ), $job->post_title ) . '</div>';
+						$this->job_dashboard_message = '<div class="listings-message">' . sprintf( __( '%s has been filled', 'listings-jobs' ), $job->post_title ) . '</div>';
 						break;
 					case 'mark_not_filled' :
 						// Check status
@@ -87,14 +87,14 @@ class Shortcodes {
 						update_post_meta( $job_id, '_filled', 0 );
 
 						// Message
-						$this->job_dashboard_message = '<div class="job-manager-message">' . sprintf( __( '%s has been marked as not filled', 'listings-jobs' ), $job->post_title ) . '</div>';
+						$this->job_dashboard_message = '<div class="listings-message">' . sprintf( __( '%s has been marked as not filled', 'listings-jobs' ), $job->post_title ) . '</div>';
 						break;
 					case 'delete' :
 						// Trash it
 						wp_trash_post( $job_id );
 
 						// Message
-						$this->job_dashboard_message = '<div class="job-manager-message">' . sprintf( __( '%s has been deleted', 'listings-jobs' ), $job->post_title ) . '</div>';
+						$this->job_dashboard_message = '<div class="listings-message">' . sprintf( __( '%s has been deleted', 'listings-jobs' ), $job->post_title ) . '</div>';
 
 						break;
 					case 'duplicate' :
@@ -121,14 +121,14 @@ class Shortcodes {
 
 						break;
 					default :
-						do_action( 'job_manager_job_dashboard_do_action_' . $action );
+						do_action( 'listings_jobs_job_dashboard_do_action_' . $action );
 						break;
 				}
 
-				do_action( 'job_manager_my_job_do_action', $action, $job_id );
+				do_action( 'listings_jobs_my_job_do_action', $action, $job_id );
 
 			} catch ( \Exception $e ) {
-				$this->job_dashboard_message = '<div class="job-manager-error">' . $e->getMessage() . '</div>';
+				$this->job_dashboard_message = '<div class="listings-error">' . $e->getMessage() . '</div>';
 			}
 		}
 	}
@@ -147,7 +147,7 @@ class Shortcodes {
 			'posts_per_page' => '25',
 		), $atts ) );
 
-		wp_enqueue_script( 'wp-job-manager-job-dashboard' );
+		wp_enqueue_script( 'listings-jobs-job-dashboard' );
 
 		ob_start();
 
@@ -156,15 +156,15 @@ class Shortcodes {
 			$action = sanitize_title( $_REQUEST['action'] );
 
 			// Show alternative content if a plugin wants to
-			if ( has_action( 'job_manager_job_dashboard_content_' . $action ) ) {
-				do_action( 'job_manager_job_dashboard_content_' . $action, $atts );
+			if ( has_action( 'listings_jobs_job_dashboard_content_' . $action ) ) {
+				do_action( 'listings_jobs_job_dashboard_content_' . $action, $atts );
 
 				return ob_get_clean();
 			}
 		}
 
 		// ....If not show the job dashboard
-		$args     = apply_filters( 'job_manager_get_dashboard_jobs_args', array(
+		$args     = apply_filters( 'listings_jobs_get_dashboard_jobs_args', array(
 			'post_type'           => 'job_listing',
 			'post_status'         => array( 'publish', 'expired', 'pending' ),
 			'ignore_sticky_posts' => 1,
@@ -179,7 +179,7 @@ class Shortcodes {
 
 		echo $this->job_dashboard_message;
 
-		$job_dashboard_columns = apply_filters( 'job_manager_job_dashboard_columns', array(
+		$job_dashboard_columns = apply_filters( 'listings_jobs_job_dashboard_columns', array(
 			'job_title' => __( 'Title', 'listings-jobs' ),
 			'filled'    => __( 'Filled?', 'listings-jobs' ),
 			'date'      => __( 'Date Posted', 'listings-jobs' ),
@@ -209,15 +209,15 @@ class Shortcodes {
 	public function output_jobs( $atts ) {
 		ob_start();
 
-		extract( $atts = shortcode_atts( apply_filters( 'job_manager_output_jobs_defaults', array(
-			'per_page'                  => get_option( 'job_manager_per_page' ),
+		extract( $atts = shortcode_atts( apply_filters( 'listings_jobs_output_jobs_defaults', array(
+			'per_page'                  => get_option( 'listings_jobs_per_page' ),
 			'orderby'                   => 'featured',
 			'order'                     => 'DESC',
 
 			// Filters + cats
 			'show_filters'              => true,
 			'show_categories'           => true,
-			'show_category_multiselect' => get_option( 'job_manager_enable_default_category_multiselect', false ),
+			'show_category_multiselect' => get_option( 'listings_jobs_enable_default_category_multiselect', false ),
 			'show_pagination'           => false,
 			'show_more'                 => true,
 
@@ -234,7 +234,7 @@ class Shortcodes {
 			'selected_job_types'        => implode( ',', array_values( listings_jobs_get_types( 'id=>slug' ) ) ),
 		) ), $atts ) );
 
-		if ( ! get_option( 'job_manager_enable_categories' ) ) {
+		if ( ! get_option( 'listings_jobs_enable_categories' ) ) {
 			$show_categories = false;
 		}
 
@@ -282,7 +282,7 @@ class Shortcodes {
 
 		} else {
 
-			$jobs = listings_jobs_get_listings( apply_filters( 'job_manager_output_jobs_args', array(
+			$jobs = listings_jobs_get_listings( apply_filters( 'listings_jobs_output_jobs_args', array(
 				'search_location'   => $location,
 				'search_keywords'   => $keywords,
 				'search_categories' => $categories,
@@ -317,7 +317,7 @@ class Shortcodes {
 				<?php endif; ?>
 
 			<?php else :
-				do_action( 'job_manager_output_jobs_no_results' );
+				do_action( 'listings_jobs_output_jobs_no_results' );
 			endif;
 
 			wp_reset_postdata();
@@ -344,7 +344,7 @@ class Shortcodes {
 			$data_attributes_string .= 'data-' . esc_attr( $key ) . '="' . esc_attr( $value ) . '" ';
 		}
 
-		$job_listings_output = apply_filters( 'job_manager_job_listings_output', ob_get_clean() );
+		$job_listings_output = apply_filters( 'listings_jobs_job_listings_output', ob_get_clean() );
 
 		return '<div class="job_listings" ' . $data_attributes_string . '>' . $job_listings_output . '</div>';
 	}
@@ -515,15 +515,15 @@ class Shortcodes {
 				$apply = listings_jobs_get_application_method();
 				?>
 
-				<?php do_action( 'job_manager_before_job_apply_' . absint( $id ) ); ?>
+				<?php do_action( 'listings_jobs_before_job_apply_' . absint( $id ) ); ?>
 
-				<?php if ( apply_filters( 'job_manager_show_job_apply_' . absint( $id ), true ) ) : ?>
-					<div class="job-manager-application-wrapper">
-						<?php do_action( 'job_manager_application_details_' . $apply->type, $apply ); ?>
+				<?php if ( apply_filters( 'listings_jobs_show_job_apply_' . absint( $id ), true ) ) : ?>
+					<div class="listings-jobs-application-wrapper">
+						<?php do_action( 'listings_jobs_application_details_' . $apply->type, $apply ); ?>
 					</div>
 				<?php endif; ?>
 
-				<?php do_action( 'job_manager_after_job_apply_' . absint( $id ) ); ?>
+				<?php do_action( 'listings_jobs_after_job_apply_' . absint( $id ) ); ?>
 
 			<?php endwhile; ?>
 

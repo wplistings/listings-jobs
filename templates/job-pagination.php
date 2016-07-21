@@ -17,7 +17,7 @@ $mid_pages   = range( $current_page - $mid_size, $current_page + $mid_size );
 $pages       = array_intersect( range( 1, $max_num_pages ), array_merge( $start_pages, $end_pages, $mid_pages ) );
 $prev_page   = 0;
 ?>
-<nav class="job-manager-pagination">
+<nav class="listings-pagination">
 	<ul>
 		<?php if ( $current_page && $current_page > 1 ) : ?>
 			<li><a href="#" data-page="<?php echo $current_page - 1; ?>">&larr;</a></li>

@@ -1,12 +1,12 @@
 <?php wp_enqueue_script( 'listings-ajax-filters' ); ?>
 
-<?php do_action( 'job_manager_job_filters_before', $atts ); ?>
+<?php do_action( 'listings_jobs_job_filters_before', $atts ); ?>
 
 <form class="job_filters">
-	<?php do_action( 'job_manager_job_filters_start', $atts ); ?>
+	<?php do_action( 'listings_jobs_job_filters_start', $atts ); ?>
 
 	<div class="search_jobs">
-		<?php do_action( 'job_manager_job_filters_search_jobs_start', $atts ); ?>
+		<?php do_action( 'listings_jobs_job_filters_search_jobs_start', $atts ); ?>
 
 		<div class="search_keywords">
 			<label for="search_keywords"><?php _e( 'Keywords', 'listings-jobs' ); ?></label>
@@ -33,12 +33,12 @@
 			</div>
 		<?php endif; ?>
 
-		<?php do_action( 'job_manager_job_filters_search_jobs_end', $atts ); ?>
+		<?php do_action( 'listings_jobs_job_filters_search_jobs_end', $atts ); ?>
 	</div>
 
-	<?php do_action( 'job_manager_job_filters_end', $atts ); ?>
+	<?php do_action( 'listings_jobs_job_filters_end', $atts ); ?>
 </form>
 
-<?php do_action( 'job_manager_job_filters_after', $atts ); ?>
+<?php do_action( 'listings_jobs_job_filters_after', $atts ); ?>
 
 <noscript><?php _e( 'Your browser does not support JavaScript, or it is disabled. JavaScript must be enabled in order to view listings.', 'listings-jobs' ); ?></noscript>

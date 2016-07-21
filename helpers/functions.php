@@ -70,7 +70,7 @@ if ( ! function_exists( 'listings_jobs_get_listings' ) ) :
             );
         }
 
-        if ( ! is_null( $args['filled'] ) || 1 === absint( get_option( 'job_manager_hide_filled_positions' ) ) ) {
+        if ( ! is_null( $args['filled'] ) || 1 === absint( get_option( 'listings_jobs_hide_filled_positions' ) ) ) {
             $query_args['meta_query'][] = array(
                 'key'     => '_filled',
                 'value'   => '1',
@@ -88,7 +88,7 @@ if ( ! function_exists( 'listings_jobs_get_listings' ) ) :
 
         if ( ! empty( $args['search_categories'] ) ) {
             $field    = is_numeric( $args['search_categories'][0] ) ? 'term_id' : 'slug';
-            $operator = 'all' === get_option( 'job_manager_category_filter_type', 'all' ) && sizeof( $args['search_categories'] ) > 1 ? 'AND' : 'IN';
+            $operator = 'all' === get_option( 'listings_jobs_category_filter_type', 'all' ) && sizeof( $args['search_categories'] ) > 1 ? 'AND' : 'IN';
             $query_args['tax_query'][] = array(
                 'taxonomy'         => 'job_listing_category',
                 'field'            => $field,
@@ -107,12 +107,12 @@ if ( ! function_exists( 'listings_jobs_get_listings' ) ) :
 
         $listings_keyword = sanitize_text_field( $args['search_keywords'] );
 
-        if ( ! empty( $listings_keyword ) && strlen( $listings_keyword ) >= apply_filters( 'job_manager_get_listings_keyword_length_threshold', 2 ) ) {
+        if ( ! empty( $listings_keyword ) && strlen( $listings_keyword ) >= apply_filters( 'listings_jobs_get_listings_keyword_length_threshold', 2 ) ) {
             $query_args['_keyword'] = $listings_keyword; // Does nothing but needed for unique hash
             add_filter( 'posts_clauses', 'listings_get_keyword_search' );
         }
 
-        $query_args = apply_filters( 'job_manager_get_listings', $query_args, $args );
+        $query_args = apply_filters( 'listings_jobs_get_listings', $query_args, $args );
 
         if ( empty( $query_args['meta_query'] ) ) {
             unset( $query_args['meta_query'] );
@@ -346,7 +346,7 @@ function listings_jobs_duplicate_listing( $post_id ) {
     if ( ! empty( $post_meta ) ) {
         $post_meta = wp_list_pluck( $post_meta, 'meta_value', 'meta_key' );
         foreach ( $post_meta as $meta_key => $meta_value ) {
-            if ( in_array( $meta_key, apply_filters( 'job_manager_duplicate_listing_ignore_keys', array( '_filled', '_featured', '_job_expires', '_job_duration', '_package_id', '_user_package_id' ) ) ) ) {
+            if ( in_array( $meta_key, apply_filters( 'listings_jobs_duplicate_listing_ignore_keys', array( '_filled', '_featured', '_job_expires', '_job_duration', '_package_id', '_user_package_id' ) ) ) ) {
                 continue;
             }
             update_post_meta( $new_post_id, $meta_key, $meta_value );
@@ -370,7 +370,7 @@ function listings_jobs_calculate_job_expiry( $job_id ) {
 
     // ...otherwise use the global option
     if ( ! $duration ) {
-        $duration = absint( get_option( 'job_manager_submission_duration' ) );
+        $duration = absint( get_option( 'listings_jobs_submission_duration' ) );
     }
 
     if ( $duration ) {
@@ -388,7 +388,7 @@ if ( ! function_exists( 'listings_jobs_get_listing_categories' ) ) :
      * @return array
      */
     function listings_jobs_get_listing_categories() {
-        if ( ! get_option( 'job_manager_enable_categories' ) ) {
+        if ( ! get_option( 'listings_jobs_enable_categories' ) ) {
             return array();
         }
 
