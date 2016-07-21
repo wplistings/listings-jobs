@@ -2,7 +2,7 @@
 
 namespace Listings\Jobs\Admin;
 
-use Listings\Jobs\Admin\Writepanels\JobDetails;
+use Listings\Jobs\Admin\Metaboxes\JobDetails;
 
 class Admin
 {

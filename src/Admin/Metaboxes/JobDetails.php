@@ -1,11 +1,11 @@
 <?php
 
-namespace Listings\Jobs\Admin\Writepanels;
+namespace Listings\Jobs\Admin\Metaboxes;
 
-use Listings\Admin\Writepanel;
+use Listings\Admin\Metabox;
 use Listings\Geocode;
 
-class JobDetails extends Writepanel
+class JobDetails extends Metabox
 {
 	/**
 	 * __construct function.
