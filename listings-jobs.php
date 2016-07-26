@@ -26,6 +26,13 @@ function listings_jobs() {
 }
 
 function __load_listings_jobs() {
+    if( version_compare( PHP_VERSION, '5.3', '<' ) ) {
+        include('helpers/php-fallback.php');
+        $fallback = new Listings_PHP_Fallback( 'Listings Jobs' );
+        $fallback->trigger_notice();
+        return;
+    }
+
     $GLOBALS['listings_jobs'] = listings_jobs();
 }
 
