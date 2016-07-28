@@ -35,6 +35,9 @@ You can find extensive documentation on [how to install plugins](http://codex.wo
 
 == Changelog ==
 
+= 0.2.1 =
+* Fix: Saving the Job Data meta box now calls correct action, so changes are saved
+
 = 0.2.0 =
 * Public testing release is now available
 
