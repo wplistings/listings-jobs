@@ -179,7 +179,7 @@ class JobDetails extends Metabox
 		if ( ! current_user_can( 'edit_post', $post_id ) ) return;
 		if ( $post->post_type != 'job_listing' ) return;
 
-		do_action( 'listings_job_save_job_listing', $post_id, $post );
+		do_action( 'listings_jobs_save_job_listing', $post_id, $post );
 	}
 
 	/**
