@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Listings - Jobs
  * Description: Adds job board functionality to the Listings plugin.
- * Version: 0.2.1
+ * Version: 0.2.2
  * Author: The Look and Feel
  * Text Domain: listings-jobs
  */
 
 // Define constants
-define( 'LISTINGS_JOBS_VERSION', '0.2.1' );
+define( 'LISTINGS_JOBS_VERSION', '0.2.2' );
 define( 'LISTINGS_JOBS_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'LISTINGS_JOBS_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 define( 'LISTINGS_JOBS_PLUGIN_FILE', __FILE__ );

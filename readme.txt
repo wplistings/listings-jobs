@@ -3,7 +3,7 @@ Contributors: thelookandfeel, CoenJacobs, scottbasgaard, robsward, garethwelton
 Tags: jobs, jobs listings, job board, listings
 Requires at least: 4.5
 Tested up to: 4.6.0
-Stable tag: 0.2.1
+Stable tag: 0.2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -34,6 +34,9 @@ You can find extensive documentation on [how to install plugins](http://codex.wo
 3. The Listings Jobs Submission Settings Page
 
 == Changelog ==
+
+= 0.2.2 =
+* Fixed bug with static class name references - wasn't compatible with PHP 5.3
 
 = 0.2.1 =
 * Verified compatibility with WordPress 4.6
