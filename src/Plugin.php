@@ -7,8 +7,6 @@ use Listings\Jobs\Admin\Admin;
 use Listings\Jobs\Ajax\Actions\GetListings;
 use Listings\Jobs\Forms\EditJob;
 use Listings\Jobs\Forms\SubmitJob;
-use Listings\Jobs\Widgets\FeaturedJobs;
-use Listings\Jobs\Widgets\RecentJobs;
 
 class Plugin {
     public function __construct()
@@ -61,8 +59,8 @@ class Plugin {
      * Widgets init
      */
     public function widgets_init() {
-        register_widget( RecentJobs::class );
-        register_widget( FeaturedJobs::class );
+        register_widget( 'Listings\Jobs\Widgets\RecentJobs' );
+        register_widget( 'Listings\Jobs\Widgets\FeaturedJobs' );
     }
 
     public function enqueue_scripts() {
