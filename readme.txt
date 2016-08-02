@@ -11,9 +11,13 @@ Manage your own job board from the WordPress admin panel to display on your webs
 
 == Description ==
 
-Listings Jobs is an extension to the **lightweight** listing plugin, Listings, for managing jobs from the WordPress admin panel to display on your website.
+Listings Jobs is an extension to the **lightweight** listing plugin, [Listings](http://wordpress.org/plugins/listings), for managing jobs from the WordPress admin panel to display on your website.
 
 While this plugin is in open beta, we continually improve the functionality, fix bugs and introduce new features. Please stay in the loop via the [GitHub repository](https://github.com/TheLookandFeel/listings-jobs) to make sure you have the latest version and are up-to-date about upcoming changes.
+
+= Listings Addons =
+
+We're currently working on a handful of useful addons which will be compatibile with core Listings and extensions.
 
 == Installation ==
 
