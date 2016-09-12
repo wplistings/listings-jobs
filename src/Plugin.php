@@ -41,6 +41,8 @@ class Plugin {
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
 
         add_action( 'admin_init', array( $this, 'updater' ) );
+        add_action( 'plugin_action_links_' . plugin_basename( LISTINGS_JOBS_PLUGIN_FILE ), array( $this, 'plugin_action_links' ) );
+
     }
     
     public function updater() {
@@ -85,4 +87,18 @@ class Plugin {
         ) );
         wp_enqueue_script( 'listings-job-dashboard');
     }
+
+    /**
+     * Show action links on the plugin screen.
+     *
+     * @param	mixed $links Plugin Action links
+     * @return	array
+     */
+    public static function plugin_action_links( $links ) {
+        $action_links = array(
+            'settings' => '<a href="' . admin_url( 'options-general.php?page=listings-settings&tab=job_listings' ) . '" title="' . esc_attr( __( 'View Listings Jobs Settings', 'listings' ) ) . '">' . __( 'Settings', 'listings' ) . '</a>',
+        );
+        return array_merge( $action_links, $links );
+    }
+
 }
