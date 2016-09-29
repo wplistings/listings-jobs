@@ -96,7 +96,7 @@ class Plugin {
      */
     public static function plugin_action_links( $links ) {
         $action_links = array(
-            'settings' => '<a href="' . admin_url( 'options-general.php?page=listings-settings&tab=job_listings' ) . '" title="' . esc_attr( __( 'View Listings Jobs Settings', 'listings' ) ) . '">' . __( 'Settings', 'listings' ) . '</a>',
+            'settings' => '<a href="' . admin_url( 'options-general.php?page=listings-settings&tab=job_listings' ) . '" title="' . esc_attr( __( 'View Listings Jobs Settings', 'listings-jobs' ) ) . '">' . __( 'Settings', 'listings-jobs' ) . '</a>',
         );
         return array_merge( $action_links, $links );
     }
