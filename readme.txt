@@ -39,6 +39,8 @@ You can find extensive documentation on [how to install plugins](http://codex.wo
 
 == Changelog ==
 
+= 0.3.0 =
+
 = 0.2.2 =
 * Fixed bug with static class name references - wasn't compatible with PHP 5.3
 
